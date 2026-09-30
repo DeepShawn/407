@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101311">
-<meta name="description" content="《别应门》：一扇门，三分钟。围绕门外来客展开的单人网页心理恐怖游戏。">
-<title>别应门 · DO NOT ANSWER</title>
+<meta name="description" content="《别应门：失序之夜》：六章连续守夜、剧情时间线与双结局。纯 HTML 离线单人心理恐怖游戏。">
+<title>别应门：失序之夜 · DO NOT ANSWER</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101311'/%3E%3Cpath d='M18 54V10h28v44M13 54h38' fill='none' stroke='%23ccb99e' stroke-width='3'/%3E%3Ccircle cx='38' cy='34' r='2' fill='%23ccb99e'/%3E%3C/svg%3E">
 <style>
 :root{color-scheme:dark;--ink:#e6dece;--muted:#a4aaa0;--dim:#717c74;--accent:#cbb699;--red:#c48675;--line:rgba(208,215,198,.18);--surface:rgba(17,24,21,.78);--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;--serif:"Songti SC","Noto Serif CJK SC","STSong",serif;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
@@ -21,6 +21,25 @@
 @media(max-height:500px) and (max-width:760px){.landing-content{top:92px;bottom:auto;left:30px}.landing-content h1{font-size:42px}.eyebrow,.story,.session-note,.menu-aside{display:none}.english-title{margin-bottom:13px}.rules-short{max-width:290px;margin-bottom:15px}.landing-footer{right:28px;left:auto;bottom:22px;width:235px}.footer-options{position:static;margin-bottom:15px}.content-warning{font-size:8px}.controls-wrap{bottom:15px;width:min(510px,calc(100% - 50px))}.control{height:45px}.subtitle-wrap{bottom:103px}.chapter{top:93px}.breathing{top:96px}#alertCue{top:83px}#peepLabel{top:104px}}
 @media(max-height:460px) and (min-width:761px){.masthead{top:20px;left:34px;right:30px}.landing-content{left:35px;top:92px;bottom:auto;transform:none;width:390px}.landing-content h1{font-size:48px}.eyebrow,.story,.session-note,.menu-aside{display:none}.english-title{font-size:8px;margin-bottom:16px}.rules-short{font-size:10px;margin-bottom:17px}.landing-footer{right:32px;left:auto;bottom:23px;width:290px;display:block}.footer-options{margin-top:12px;justify-content:flex-start}.content-warning{font-size:9px}.issue{font-size:8px}.primary{min-height:49px}.chapter{top:100px}.breathing{top:104px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.05s!important;animation-duration:.05s!important}.primary:hover{transform:none}}
+/* Timeline edition — visual hierarchy, compact touch controls and chapter archive. */
+:root{--signal:#c29680;--line-bright:rgba(201,179,145,.33)}
+.live-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#c49a7a;box-shadow:0 0 11px #ad796d80}.eyebrow:before{display:none}.landing-content{width:min(600px,50vw);top:49%;transform:translateY(-43%)}.landing-content h1{font-size:clamp(76px,8vw,124px)}.story{font-size:15px}.rules-short{margin-bottom:22px}.english-title{margin-bottom:27px}.landing-route{display:flex;gap:15px;align-items:center;max-width:320px;margin:0 0 25px;font:9px var(--mono);letter-spacing:1px;color:#999d89}.landing-route i{height:1px;background:#6a766250;flex:1}.landing-route b{font:10px var(--sans);letter-spacing:3px;color:#b8b3a1}.start-actions{display:flex;gap:24px;align-items:center}#lastRecord{line-height:1.8}.menu-aside{color:#939785}.masthead-actions{gap:23px}
+.chapter-rail{position:absolute;top:95px;left:50%;transform:translateX(-50%);width:274px;display:flex;justify-content:space-between;pointer-events:auto}.chapter-rail:before{content:"";position:absolute;height:1px;left:14px;right:14px;top:12px;background:#a6a38538}.rail-node{z-index:1;border:0;background:transparent;color:#667460;width:34px;height:36px;font:8px var(--mono);padding:0;display:flex;align-items:center;flex-direction:column;gap:5px}.rail-node i{width:8px;height:8px;margin-top:8px;background:#1a231a;border:1px solid #68745f;border-radius:50%}.rail-node.current{color:#d5c0a0}.rail-node.current i{background:#c7b18d;border-color:#dec59b;box-shadow:0 0 12px #bbaa6a45}.rail-node.done i{background:#72856a}.rail-node.locked{opacity:.45}.chapter{max-width:230px}.objective{line-height:1.8;color:#9a9c86;max-width:185px}.hud-location{letter-spacing:1.5px}.breathing{width:116px}.secondary-meter{margin-top:17px;font-size:9px;color:#8f9e82}.secondary-meter b{float:right;font:10px var(--mono)}.secondary-meter .meter-track{margin-top:7px}.exposure-meter{margin-top:14px;font-size:8px;color:#a48570}.exposure-meter .meter-track{margin-top:7px}.exposure-meter .meter-fill{background:#b98470;transform:scaleX(0)}#alertCue{top:150px;padding:7px 11px;background:#11170fdc;border:1px solid #bb967243;max-width:calc(100vw - 44px);white-space:normal;text-align:center;line-height:1.65}#alertCue.safe-cue{color:#b6c3a7;border-color:#91a4784d}#clock.anomaly{color:#cbad92;letter-spacing:5px}.controls-wrap{width:min(700px,calc(100% - 52px));bottom:max(24px,env(safe-area-inset-bottom))}.controls{grid-template-columns:1fr 1fr 1.2fr}.control{height:53px}.tactical-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}.tactical-controls .control{height:43px}.tactical-controls .control-small{display:inline;margin-left:12px}.tactical-controls .control-label{display:inline}.tactical-controls svg{width:17px;height:17px}.control-foot{margin-top:11px}.threat-requirements{height:28px;display:flex;align-items:flex-start;justify-content:center;gap:15px;font-size:9px;letter-spacing:1px;color:#83927b}.requirement{color:#c0947a}.requirement.met{color:#b3c0a0}.requirement:before{content:"○ ";font-family:var(--mono)}.requirement.met:before{content:"● "}.subtitle-wrap{bottom:205px}.control.is-locked{opacity:.45}.control:disabled:hover{background:rgba(15,24,18,.79);border-color:rgba(181,199,166,.2)}#peepLabel{top:193px}.end-actions{flex-wrap:wrap}#ending{overflow:auto}.ending-inner{max-height:100%;width:min(600px,100%)}.ending-note{max-width:480px;margin:20px auto 0}
+.chapter-backdrop{position:fixed;inset:0;z-index:17;display:flex;align-items:center;justify-content:center;padding:28px;background:rgba(5,10,7,.79);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px)}.chapter-card{width:min(610px,100%);max-height:calc(100dvh - 56px);overflow:auto;padding:42px 43px 35px;border:1px solid #b5ae8d40;background:linear-gradient(145deg,#20291fe8,#101a13f2);position:relative}.chapter-card:before{content:"";position:absolute;top:0;left:43px;width:49px;height:2px;background:#bba482}.chapter-kicker{font:9px var(--mono);letter-spacing:3px;color:#baaa8e}.chapter-heading{display:flex;align-items:baseline;gap:22px;margin:21px 0 13px}.chapter-heading b{font:48px var(--mono);font-weight:300;color:#67775d}.chapter-heading h2{font:35px var(--serif);font-weight:400;letter-spacing:4px;margin:0}#briefStory{font:14px var(--serif);line-height:2.05;letter-spacing:1px;color:#b7bfaa;white-space:pre-line;margin-bottom:22px}.brief-rule{border-top:1px solid #a5af8d26;padding-top:17px;margin-top:16px}.brief-rule span{display:block;font:9px var(--mono);letter-spacing:2px;color:#b2a182;margin-bottom:9px}.brief-rule p{margin:0;font-size:12px;line-height:1.9;color:#bfc5af}.brief-actions{display:flex;align-items:center;gap:20px;justify-content:space-between;margin-top:28px}.brief-actions .primary{min-height:49px;font-size:12px;gap:35px}.brief-note{font-size:9px;line-height:1.9;color:#7c8e72;margin:18px 0 0}.checkpoint-banner{font:9px var(--mono);letter-spacing:1px;color:#8d9e80;padding-top:17px;border-top:1px solid #8c9d782c;margin-top:20px}
+#archive{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:34px;background:rgba(4,10,6,.89);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.archive-shell{width:min(1020px,100%);height:min(720px,calc(100dvh - 68px));display:flex;flex-direction:column;background:linear-gradient(125deg,#1d271de8,#101a12f5);border:1px solid #b4b1933d;box-shadow:0 35px 100px #0006}.archive-header{display:flex;align-items:center;justify-content:space-between;padding:29px 31px 23px;border-bottom:1px solid #a5af8d26;gap:15px}.archive-kicker{font:8px var(--mono);letter-spacing:3px;color:#9fa088;margin-bottom:10px}.archive-header h2{font:28px var(--serif);letter-spacing:4px;font-weight:400;margin:0}.archive-header p{font-size:10px;color:#8f9b83;line-height:1.8;margin:9px 0 0}.archive-header .icon-button{flex-shrink:0}.archive-body{flex:1;min-height:0;display:grid;grid-template-columns:260px 1fr}.archive-chapters{padding:17px;overflow-y:auto;border-right:1px solid #a5af8d26}.archive-chapter{display:block;width:100%;border:1px solid transparent;background:transparent;text-align:left;padding:13px 13px 12px;color:#99a38d;margin:0 0 4px;transition:background .2s}.archive-chapter.selected{border-color:#ac9e7752;background:#ab9c6d0c}.archive-chapter:hover{background:#ab9c6d0a}.archive-chapter small{display:block;font:9px var(--mono);letter-spacing:1px;color:#88927d}.archive-chapter strong{display:block;font:16px var(--serif);font-weight:400;letter-spacing:2px;margin:8px 0;color:#bac1ac}.archive-chapter em{font-style:normal;font-size:9px;color:#8c957f}.archive-chapter.locked{opacity:.43}.archive-detail{overflow-y:auto;padding:26px 32px}.archive-detail-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding-bottom:18px;border-bottom:1px solid #a5af8d26}.archive-detail-heading h3{font:22px var(--serif);font-weight:400;letter-spacing:2px;margin:6px 0 10px}.archive-detail-heading p{font-size:10px;color:#9ca48e;line-height:1.85;margin:0}.archive-detail-heading .secondary{flex-shrink:0;min-height:36px;font-size:10px;padding:0 13px}.log-list{padding:22px 0 0 8px;margin:0;list-style:none}.log-entry{position:relative;border-left:1px solid #9e9d7845;padding:0 0 25px 24px}.log-entry:before{content:"";width:5px;height:5px;border:1px solid #ab9f7e;background:#253220;position:absolute;left:-3.5px;top:3px;border-radius:50%}.log-entry.threat:before{background:#b07f68;border-color:#bc8c78}.log-entry time{font:10px var(--mono);color:#a49c81;letter-spacing:1px}.log-entry h4{font-size:12px;font-weight:400;letter-spacing:1px;margin:9px 0 7px;color:#c3c7b1}.log-entry p{font-size:11px;line-height:1.9;margin:0;color:#92a086}.log-entry:last-child{padding-bottom:4px}.empty-log{font:13px var(--serif);line-height:2.1;letter-spacing:1px;color:#8c9c81;padding:30px 0}.fragment-card{padding:16px 20px;border:1px solid #b6a47b48;background:#c7b08d08;margin:20px 0 4px;display:flex;align-items:center;gap:19px}.fragment-word{font:30px var(--serif);color:#c6b99a;letter-spacing:4px}.fragment-card p{font-size:10px;line-height:1.9;color:#96a089;margin:0}.archive-footer{padding:15px 31px;border-top:1px solid #a5af8d26;display:flex;justify-content:space-between;gap:16px;align-items:center;font-size:9px;color:#87967b;line-height:1.8}.archive-footer .text-button{font-size:10px}.archive-scroll::-webkit-scrollbar{width:3px}.archive-scroll::-webkit-scrollbar-thumb{background:#9da48540}
+#cinematicText{position:fixed;inset:0;z-index:4;pointer-events:none;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:19px;opacity:0;transition:opacity .6s;background:radial-gradient(ellipse,#0a1009ce,transparent 75%);padding:30px;text-align:center}#cinematicText.shown{opacity:1}#cinematicText strong{font:clamp(32px,6vw,77px) var(--serif);font-weight:400;letter-spacing:.15em;color:#cac5b1}#cinematicText span{font:12px var(--serif);letter-spacing:3px;color:#a4a68f}.signal-note{color:#ad9175}#toast{top:10%;font-size:11px}
+@media(max-width:900px){.masthead-actions{gap:18px}.issue{display:none}.tactical-controls .control-small{display:none}.objective{max-width:155px}.chapter{max-width:175px}.chapter-rail{width:235px}.archive-body{grid-template-columns:224px 1fr}}
+@media(max-width:760px){.landing-content{width:auto;left:27px;right:25px;top:auto;bottom:153px;transform:none}.landing-content h1{font-size:70px}.story{font-size:12px;letter-spacing:.7px}.english-title{margin-bottom:20px}.rules-short{font-size:10px;line-height:1.9;margin-bottom:18px}.landing-route{margin-bottom:20px;max-width:287px;gap:12px;font-size:8px}.landing-route b{font-size:9px}.start-actions{gap:20px}.eyebrow{font-size:8px;letter-spacing:1.7px}.session-note{font-size:8px}.masthead{left:23px;right:23px}.masthead-actions{gap:17px}.wordmark{font-size:7px;letter-spacing:1px;gap:8px}.masthead-actions .text-button{font-size:9px}.menu-aside{top:25%;font-size:9px}.hud-top{left:17px;right:16px}.hud-brand{font-size:13px}.hud-location{font-size:6px;letter-spacing:.5px}.hud-actions{gap:6px}.hud-actions .icon-button{width:28px;height:28px}.clock-wrap{left:47%;top:21px}#clock{font-size:20px;letter-spacing:1px}#clock.anomaly{letter-spacing:1px}.remaining{font-size:7px}.chapter{left:19px;top:109px;max-width:135px}.chapter-no{font-size:7px}#chapterTitle{font-size:11px}.breathing{right:19px;top:109px;width:76px}.secondary-meter{margin-top:12px;font-size:8px}.secondary-meter b{font-size:9px}.exposure-meter{margin-top:10px;font-size:7px}.chapter-rail{top:72px;width:190px;left:50%}.rail-node{font-size:7px;height:30px}.rail-node i{width:6px;height:6px}.chapter-rail:before{top:11px}.controls-wrap{width:calc(100% - 32px);bottom:max(19px,env(safe-area-inset-bottom))}.control{height:52px}.tactical-controls{gap:7px;margin-top:7px}.tactical-controls .control{height:39px}.tactical-controls .control-label{font-size:10px}.tactical-controls svg{width:14px;height:14px}.threat-requirements{font-size:8px;gap:12px;height:26px;letter-spacing:.3px}.control-foot{font-size:7px;margin-top:10px}.subtitle-wrap{bottom:193px}#subtitle{font-size:11px;letter-spacing:.7px}#alertCue{top:217px;font-size:9px;letter-spacing:.6px;max-width:calc(100vw - 40px)}#peepLabel{top:265px;font-size:7px}.chapter-card{padding:27px 24px;max-height:calc(100dvh - 36px)}.chapter-backdrop{padding:18px}.chapter-heading{gap:15px;margin-top:17px}.chapter-heading b{font-size:35px}.chapter-heading h2{font-size:27px;letter-spacing:2px}.chapter-kicker{font-size:8px;letter-spacing:1.5px}#briefStory{font-size:12px}.brief-rule p{font-size:11px}.brief-actions{gap:10px}.brief-actions .primary{min-height:46px;font-size:11px;gap:22px}.brief-actions .text-button{font-size:10px}.checkpoint-banner{font-size:8px}.brief-note{font-size:8px}.archive-shell{height:calc(100dvh - 30px)}#archive{padding:15px}.archive-header{padding:21px 19px 16px}.archive-header h2{font-size:23px}.archive-kicker{font-size:7px;letter-spacing:1.6px}.archive-header p{font-size:9px;max-width:260px}.archive-body{display:flex;flex-direction:column}.archive-chapters{padding:12px 13px;display:flex;flex-shrink:0;overflow-x:auto;overflow-y:hidden;border-right:0;border-bottom:1px solid #a5af8d26;gap:7px}.archive-chapter{flex:0 0 112px;padding:10px;margin:0}.archive-chapter small{font-size:7px}.archive-chapter strong{font-size:13px;letter-spacing:1px;margin:7px 0}.archive-chapter em{font-size:8px}.archive-detail{padding:20px;flex:1;min-height:0}.archive-detail-heading h3{font-size:19px}.archive-detail-heading p{font-size:9px}.archive-detail-heading .secondary{font-size:9px;padding:0 10px;min-height:33px}.archive-footer{padding:12px 18px;font-size:8px}.archive-footer .text-button{font-size:9px}.fragment-word{font-size:26px}.log-entry p{font-size:10px}.log-entry h4{font-size:11px}.log-entry time{font-size:9px}.end-actions .text-button{width:100%}.ending-overline{margin-bottom:16px}.endStats{margin:20px auto}#endText{line-height:1.95;font-size:12px}.ending-note{font-size:9px}.landing-footer{bottom:22px}.content-warning{font-size:8px}.footer-options{bottom:65px}#lastRecord{font-size:8px}}
+@media(max-width:380px){.masthead-actions{gap:11px}.landing-content h1{font-size:58px}.landing-content{bottom:143px}.story{font-size:11px}.english-title{margin-bottom:16px}.rules-short{font-size:9px}.landing-route{margin-bottom:16px}.session-note{font-size:7px}.hud-brand{font-size:12px}.hud-actions{gap:4px}.hud-actions .icon-button{width:26px;height:26px}.clock-wrap{left:46%}#clock{font-size:18px}.control-label{font-size:9px}.control-small{font-size:6px}.control{padding:0 7px;gap:5px}}
+@media(max-height:740px) and (max-width:760px){.landing-content{bottom:144px}.landing-content h1{font-size:57px}.eyebrow{margin-bottom:13px}.english-title{margin-bottom:15px}.story{font-size:11px;line-height:1.9}.rules-short{margin-bottom:15px;font-size:9px}.landing-route{margin-bottom:17px}.session-note{margin-top:11px}.landing-content .primary{min-height:47px}.menu-aside{display:none}}
+@media(max-height:580px){.chapter-card{padding:22px 30px}.chapter-heading{margin:12px 0 10px}.chapter-heading b{font-size:30px}.chapter-heading h2{font-size:27px}#briefStory{font-size:11px;line-height:1.8;margin-bottom:12px}.brief-rule{margin-top:10px;padding-top:10px}.brief-rule p{font-size:10px}.brief-rule span{font-size:8px;margin-bottom:5px}.brief-actions{margin-top:17px}.brief-note{margin-top:12px}.checkpoint-banner{margin-top:12px;padding-top:12px}.subtitle-wrap{bottom:162px}#alertCue{top:145px}.chapter-rail{top:67px}.controls-wrap{bottom:12px}.control{height:39px}.tactical-controls .control{height:32px}.tactical-controls{margin-top:5px}.control-foot{margin-top:7px}.threat-requirements{height:22px}.breathing{top:106px}.chapter{top:104px}.secondary-meter{margin-top:9px}.exposure-meter{display:none}#peepLabel{top:178px}.archive-header{padding:16px 24px}.archive-header p{display:none}.archive-kicker{margin-bottom:7px}.archive-footer{padding:10px 24px}#ending{padding:18px}#endTitle{font-size:34px;margin-bottom:12px}#endText{font-size:11px;line-height:1.8}#endStats{padding-top:13px;margin:14px auto}.ending-note{margin-top:12px}}
+@media(max-height:500px) and (min-width:600px){.landing-content{left:35px;top:84px;bottom:auto;transform:none;width:420px}.landing-content h1{font-size:46px;margin-bottom:8px}.eyebrow,.story,.session-note,.menu-aside{display:none}.english-title{font-size:8px;margin-bottom:13px}.rules-short{font-size:10px;margin-bottom:13px}.landing-route{max-width:270px;margin-bottom:16px}.landing-content .primary{min-height:43px}.landing-footer{width:240px;left:auto;right:25px;bottom:19px;display:block}.footer-options{position:static;margin-top:10px}.archive-body{display:grid;grid-template-columns:215px 1fr}.archive-chapters{display:block;overflow-y:auto;overflow-x:hidden;padding:12px}.archive-chapter{padding:9px 12px;width:100%;margin-bottom:3px}.archive-chapter strong{display:inline-block;margin:6px 9px 0 0}.archive-chapter em{display:inline}.archive-header h2{font-size:22px}.archive-detail{padding:17px 23px}.hud-top{top:15px}.clock-wrap{top:12px;left:50%}.chapter-rail{top:64px}.chapter{top:94px}.breathing{top:97px}.controls-wrap{width:min(610px,calc(100% - 60px))}#alertCue{top:102px;max-width:50vw}#peepLabel{top:143px}.subtitle-wrap{bottom:160px;width:55vw}#subtitle{font-size:10px}.modal-backdrop{padding:12px}.modal{max-height:calc(100dvh - 24px)}.content-warning{font-size:8px}.masthead{top:17px}}
+@media(prefers-reduced-motion:reduce){#clock.anomaly{letter-spacing:inherit}}
+/* Keep hit targets stationary; translating a hovered edge causes hover oscillation. */
+.primary:hover{transform:none}
+.brief-ending-option{margin-top:20px;padding:13px 0 0;border-top:1px solid #9a98762e}.brief-ending-option .toggle-label{white-space:normal;font-size:10px;line-height:1.8}.brief-ending-option input{flex-shrink:0}
+@media(max-width:760px){.tactical-controls #braceBtn{order:-1}.brief-ending-option .toggle-label{font-size:9px}.control-foot{color:#91a184}}
+
 </style>
 </head>
 <body>
@@ -36,23 +55,28 @@
 <symbol id="i-door" viewBox="0 0 24 32"><path d="M4 30V2h16v28M1 30h22"/><circle cx="15.5" cy="17" r="1"/></symbol>
 </defs></svg>
 <section id="landing" aria-labelledby="mainTitle">
- <header class="masthead"><div class="wordmark"><svg class="door-logo"><use href="#i-door"/></svg><span>夜 间 记 录 / 0407</span></div><div class="masthead-actions"><span class="issue">AN INTERACTIVE NIGHTMARE</span><button class="text-button" id="guideBtn">生存须知</button><button class="text-button" id="settingsBtn">设置</button></div></header>
- <div class="landing-content"><div class="eyebrow">一扇门 · 一个不该回应的声音</div><h1 id="mainTitle">别应门</h1><p class="english-title">DO NOT ANSWER</p><p class="story">凌晨四点五十七分。<br>物业说，只要撑到五点。<br>门外无论是谁，都不要回应。</p><p class="rules-short">门把手转动时：关灯，按住屏息。<br>你可以看猫眼。只是，别看太久。</p><button class="primary" id="startBtn"><span>进入 0407</span><span class="arrow" aria-hidden="true">↗</span></button><div class="session-note"><svg><use href="#i-headphones"/></svg><span>约 3 分钟 · 建议佩戴耳机 · 请保持适中音量</span></div><div id="lastRecord"></div></div>
- <aside class="menu-aside" aria-hidden="true">关上灯。<br>别出声。<br>等天亮。</aside>
+ <header class="masthead"><div class="wordmark"><svg class="door-logo"><use href="#i-door"/></svg><span>夜 间 记 录 / 0407</span></div><div class="masthead-actions"><span class="issue">THE LOST EIGHTEEN MINUTES</span><button class="text-button" id="archiveLanding">时间线</button><button class="text-button" id="guideBtn">生存须知</button><button class="text-button" id="settingsBtn">设置</button></div></header>
+ <div class="landing-content"><div class="eyebrow"><span class="live-dot"></span>失序之夜 / THE TIMELINE EDITION</div><h1 id="mainTitle">别应门</h1><p class="english-title">DO NOT ANSWER</p><p class="story">你记得，天已经亮过一次。<br>但门外的敲门声，又从四点四十二分开始了。</p><p class="rules-short">六段被删掉的记录。一扇始终没有打开的门。<br>这一次，它学会了你的声音。</p><div class="landing-route"><span>04:42</span><i></i><b>六章 · 一夜</b><i></i><span>05:00</span></div><div class="start-actions"><button class="primary" id="startBtn"><span>进入 0407</span><span class="arrow" aria-hidden="true">↗</span></button><button class="text-button hidden" id="newBtn">从第一章开始</button></div><div class="session-note"><svg><use href="#i-headphones"/></svg><span>完整流程约 12 分钟 · 建议耳机 · 适中音量</span></div><div id="lastRecord"></div></div>
+ <aside class="menu-aside" aria-hidden="true">别相信它。<br>也别相信五点。</aside>
  <footer class="landing-footer"><div class="content-warning">含突然惊吓与压迫音效，无血腥画面。<br>点击开始后启用声音；可随时静音、暂停或切换低刺激模式。</div><div class="footer-options"><label class="toggle-label"><input type="checkbox" id="gentleLanding"><span>低刺激模式</span></label><button class="text-button" id="landingSound">声音开启</button></div></footer>
 </section>
 <section id="hud" class="hidden" aria-label="游戏操作界面">
- <div class="hud-top"><div><div class="hud-brand">别应门</div><div class="hud-location">0407 / 门内</div></div><div class="hud-actions"><button class="icon-button" id="muteBtn" aria-label="静音"><svg><use id="soundUse" href="#i-sound"/></svg></button><button class="icon-button" id="pauseBtn" aria-label="暂停游戏（Esc）"><svg><use href="#i-pause"/></svg></button></div></div>
+ <div class="hud-top"><div><div class="hud-brand">别应门</div><div class="hud-location">0407 / 失序之夜</div></div><div class="hud-actions"><button class="icon-button" id="archiveBtn" aria-label="打开时间线（T）"><svg viewBox="0 0 24 24"><path d="M5 3v18M5 6h13M5 12h10M5 18h13"/><circle cx="5" cy="6" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="5" cy="18" r="2"/></svg></button><button class="icon-button" id="muteBtn" aria-label="静音"><svg><use id="soundUse" href="#i-sound"/></svg></button><button class="icon-button" id="pauseBtn" aria-label="暂停游戏（Esc）"><svg><use href="#i-pause"/></svg></button></div></div>
  <div class="clock-wrap"><div id="clock" aria-label="当前时间">04<span class="clock-colon">:</span>57<span class="clock-colon">:</span>00</div><div class="remaining" id="remaining">距离天亮 03:00</div></div>
- <div class="chapter"><div class="chapter-no" id="chapterNo">第一夜 / 01</div><div id="chapterTitle">敲门之前</div><div class="objective">不要应门。活到 05:00。</div></div>
- <div class="breathing" id="breathing"><div class="meter-title"><span>呼吸</span><span id="breathValue">100</span></div><div class="meter-track" role="progressbar" id="breathMeter" aria-label="剩余屏息能力" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div class="meter-fill" id="breathFill"></div></div><div id="statusLine">呼吸平稳</div></div>
+ <div class="chapter"><div class="chapter-no" id="chapterNo">第一夜 / 01</div><div id="chapterTitle">敲门之前</div><div class="objective" id="objective">不要回应。等这一段时间过去。</div></div>
+ <div class="breathing" id="breathing"><div class="meter-title"><span>呼吸</span><span id="breathValue">100</span></div><div class="meter-track" role="progressbar" id="breathMeter" aria-label="剩余屏息能力" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div class="meter-fill" id="breathFill"></div></div><div id="statusLine">呼吸平稳</div><div class="secondary-meter"><span>腕力 <b id="staminaValue">100</b></span><div class="meter-track"><div class="meter-fill" id="staminaFill"></div></div></div><div class="exposure-meter"><span>暴露程度</span><div class="meter-track"><div class="meter-fill" id="dangerFill"></div></div></div></div>
+ <div class="chapter-rail" id="chapterRail" aria-label="章节时间线"></div>
  <div id="alertCue" role="alert" aria-live="assertive"></div><div id="peepLabel" class="hidden">猫眼 / 松开以离开</div>
  <div id="doorHint"><span class="hint-reticle"></span>按住 E 查看猫眼</div>
  <div class="subtitle-wrap"><p id="subtitle" role="status" aria-live="polite" aria-atomic="true"></p></div>
- <div class="controls-wrap"><div class="controls"><button class="control" id="lampBtn" aria-pressed="false" aria-label="关闭灯光（L）"><svg><use href="#i-lamp"/></svg><span><span class="control-label" id="lampLabel">关灯</span><span class="control-small" id="lampSmall">灯光亮着</span></span><kbd>L</kbd></button><button class="control" id="peepBtn" aria-pressed="false" aria-label="按住查看猫眼（E）"><svg><use href="#i-eye"/></svg><span><span class="control-label">看猫眼</span><span class="control-small">按住查看</span></span><kbd>E</kbd></button><button class="control" id="breathBtn" aria-pressed="false" aria-label="按住屏息（空格）"><svg><use href="#i-breath"/></svg><span><span class="control-label" id="breathLabel">屏住呼吸</span><span class="control-small" id="breathSmall">按住 · 别松开</span></span><kbd>SPACE</kbd></button></div><div class="control-foot"><span id="doorStatus">门已反锁 / 请勿回应</span><span>ESC 暂停 · M 静音</span></div></div><div class="time-progress"><div id="progress"></div></div>
+ <div class="controls-wrap"><div class="threat-requirements" id="requirements">等待下一次动静</div><div class="controls"><button class="control" id="lampBtn" aria-pressed="false" aria-label="关闭灯光（L）"><svg><use href="#i-lamp"/></svg><span><span class="control-label" id="lampLabel">关灯</span><span class="control-small" id="lampSmall">灯光亮着</span></span><kbd>L</kbd></button><button class="control" id="peepBtn" aria-pressed="false" aria-label="按住查看猫眼（E）"><svg><use href="#i-eye"/></svg><span><span class="control-label">看猫眼</span><span class="control-small">按住查看</span></span><kbd>E</kbd></button><button class="control" id="breathBtn" aria-pressed="false" aria-label="按住屏息（空格）"><svg><use href="#i-breath"/></svg><span><span class="control-label" id="breathLabel">屏住呼吸</span><span class="control-small" id="breathSmall">按住 · 别松开</span></span><kbd>SPACE</kbd></button></div><div class="tactical-controls"><button class="control" id="coverBtn" aria-label="关闭猫眼挡片（C）" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M6 6l12 12M12 2v3"/></svg><span><span class="control-label" id="coverLabel">遮住猫眼</span><span class="control-small" id="coverSmall">挡片已打开</span></span><kbd>C</kbd></button><button class="control" id="braceBtn" aria-label="按住顶住门链（R）" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="m9 7 2-2a5 5 0 0 1 7 7l-2 2M8 10l-2 2a5 5 0 0 0 7 7l2-2M8 16l8-8"/></svg><span><span class="control-label" id="braceLabel">顶住门链</span><span class="control-small" id="braceSmall">按住 · 稳住门</span></span><kbd>R</kbd></button></div><div class="control-foot"><span id="doorStatus">门已反锁 / 请勿回应</span><span>T 时间线 · ESC 暂停</span></div></div><div class="time-progress"><div id="progress"></div></div>
 </section>
-<div id="panel" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><div class="modal"><div class="modal-eyebrow" id="panelEyebrow">TAKE A BREATH</div><h2 id="panelTitle">先喘口气。</h2><p class="modal-intro" id="panelIntro">时间已暂停。门外的东西，也在等。</p><div id="guideContent"><div class="guide-row"><div class="guide-num">01</div><div><div class="guide-title">敲门时，不必回应。</div><div class="guide-description">撑过三分钟，等时钟走到 05:00。普通敲门不用操作；门把手开始转动，才是真正的危险。</div></div></div><div class="guide-row"><div class="guide-num">02</div><div><div class="guide-title">门把手一动，关灯、屏息。</div><div class="guide-description">按 L 关灯，同时按住空格屏息；手机使用下方按钮。等“脚步远了”的提示出现，再松开。屏息约可维持九秒，松开后恢复。</div></div></div><div class="guide-row"><div class="guide-num">03</div><div><div class="guide-title">猫眼的另一边，也能看见你。</div><div class="guide-description">按住 E 或“看猫眼”观察走廊。别连续看太久，更不要在门把手转动时靠近。声音线索均有文字提示，静音也能游玩。</div></div></div></div><div id="settingsContent"><div class="setting-line volume-line"><label for="volumeRange">整体音量</label><input id="volumeRange" type="range" min="0" max="100" value="55"><span id="volumeValue">55%</span></div><div class="setting-line"><label class="toggle-label"><input type="checkbox" id="gentlePanel"><span>低刺激模式</span></label><span style="font-size:9px;color:#7c9073">弱化突脸、震动与突发音效</span></div></div><div class="modal-actions"><button class="primary" id="closePanel"><span>继续</span><span class="arrow" aria-hidden="true">→</span></button><button class="secondary hidden" id="quitBtn">回到门外</button></div><div class="modal-note">建议保持适中音量。Esc 随时暂停；切换标签页会自动暂停。<br>本作不调用摄像头、麦克风或任何外部服务。</div></div></div>
-<section id="ending" class="hidden" role="dialog" aria-modal="true" aria-labelledby="endTitle"><div class="ending-inner"><div class="ending-overline" id="endOverline">04:58 / 门开了</div><h2 id="endTitle">它知道你在。</h2><p id="endText"></p><div id="endStats"></div><div class="end-actions"><button class="primary" id="retryBtn"><span>再熬一夜</span><span class="arrow" aria-hidden="true">↗</span></button><button class="secondary" id="homeBtn">返回门口</button></div><p class="ending-note" id="endNote"></p></div></section>
+<div id="panel" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><div class="modal"><div class="modal-eyebrow" id="panelEyebrow">TAKE A BREATH</div><h2 id="panelTitle">先喘口气。</h2><p class="modal-intro" id="panelIntro">时间已暂停。门外的东西，也在等。</p><div id="guideContent"><div class="guide-row"><div class="guide-num">01</div><div><div class="guide-title">六章守夜，不是六次同样的敲门。</div><div class="guide-description">每章有新的规则卡。按顶部危险提示与下方条件操作；门外“说的话”不是系统指令。普通敲门不用回应。</div></div></div><div class="guide-row"><div class="guide-num">02</div><div><div class="guide-title">先关灯，再按住屏息。</div><div class="guide-description">L 切换灯光，空格屏息。呼吸可坚持约十秒，松开后恢复。第四章的回声有短暂换气窗口，第二次试探结束才算安全。</div></div></div><div class="guide-row"><div class="guide-num">03</div><div><div class="guide-title">别让它看见你，也别让门链松掉。</div><div class="guide-description">C 开关猫眼挡片；R 按住顶门。E 按住看猫眼，先打开挡片。持续窥视会被反窥。手机可用两指同时屏息、顶门。</div></div></div><div class="guide-row"><div class="guide-num">04</div><div><div class="guide-title">时间线，才是这一夜的证据。</div><div class="guide-description">T 查看剧情时间与已发生的事件，打开即暂停。纸条出现时，短看猫眼可收集碎片；集齐六片可解锁另一种最终结局。失败从本章重试，刷新可从已保存章节的开头继续。</div></div></div></div><div id="settingsContent"><div class="setting-line volume-line"><label for="volumeRange">整体音量</label><input id="volumeRange" type="range" min="0" max="100" value="55"><span id="volumeValue">55%</span></div><div class="setting-line"><label class="toggle-label"><input type="checkbox" id="gentlePanel"><span>低刺激模式</span></label><span style="font-size:9px;color:#7c9073">弱化突脸、震动与突发音效</span></div></div><div class="modal-actions"><button class="primary" id="closePanel"><span>继续</span><span class="arrow" aria-hidden="true">→</span></button><button class="secondary hidden" id="quitBtn">回到门外</button></div><div class="modal-note">建议保持适中音量。Esc 随时暂停；切换标签页会自动暂停。<br>本作不调用摄像头、麦克风或任何外部服务。</div></div></div>
+<section id="ending" class="hidden" role="dialog" aria-modal="true" aria-labelledby="endTitle"><div class="ending-inner"><div class="ending-overline" id="endOverline">04:58 / 门开了</div><h2 id="endTitle">它知道你在。</h2><p id="endText"></p><div id="endStats"></div><div class="end-actions"><button class="primary" id="retryBtn"><span>再熬一夜</span><span class="arrow" aria-hidden="true">↗</span></button><button class="secondary" id="homeBtn">返回门口</button><button class="text-button" id="archiveEnding">查看时间线</button></div><p class="ending-note" id="endNote"></p></div></section>
+<div id="cinematicText" aria-hidden="true"><strong id="cinematicTitle"></strong><span id="cinematicSub"></span></div>
+<section id="briefing" class="chapter-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="briefTitle"><div class="chapter-card archive-scroll"><div class="chapter-kicker" id="briefTime">04:42 — 04:45 / NIGHT 0407</div><div class="chapter-heading"><b id="briefNumber">01</b><h2 id="briefTitle">第一次敲门</h2></div><p id="briefStory"></p><div class="brief-rule"><span>本章生存规则 / SURVIVAL RULE</span><p id="briefRule"></p></div><div class="brief-rule"><span>档案线索 / OPTIONAL EVIDENCE</span><p id="briefClue">纸条出现时，打开挡片，短看猫眼。六张碎片指向另一种结局。</p></div><div class="checkpoint-banner" id="briefCheckpoint"></div><div class="brief-ending-option hidden" id="briefEndingOption"><label class="toggle-label"><input type="checkbox" id="ignoreClues"><span>本次只守门，不拼合档案（另一种结局）</span></label></div><div class="brief-actions"><button class="primary" id="enterChapter"><span>留在门内</span><span class="arrow" aria-hidden="true">→</span></button><button class="text-button" id="archiveBriefing">查看时间线</button><button class="text-button" id="briefHome">返回</button></div><p class="brief-note">含近距离面孔与突发音效。请保持适中音量；可在设置中启用低刺激模式。<br>关卡时钟尚未开始。任意时刻按 Esc 暂停；静音也有完整危险文字提示。</p></div></section>
+<section id="archive" class="hidden" role="dialog" aria-modal="true" aria-labelledby="archiveTitle"><div class="archive-shell"><header class="archive-header"><div><div class="archive-kicker">CASE 0407 / CHRONOLOGICAL EVIDENCE</div><h2 id="archiveTitle">被删掉的十八分钟</h2><p id="archiveIntro">04:42 — 05:00。只记录你亲历过的事情。</p></div><button class="icon-button" id="archiveClose" aria-label="关闭时间线"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header><div class="archive-body"><nav class="archive-chapters archive-scroll" id="archiveChapters" aria-label="选择章节"></nav><div class="archive-detail archive-scroll" id="archiveDetail"></div></div><footer class="archive-footer"><span id="archiveStats"></span><button class="text-button" id="archiveResume">返回</button></footer></div></section>
+
 <div id="toast" role="status"></div>
 <noscript>这扇门需要 JavaScript 才能打开。<br>请在浏览器中启用 JavaScript，再进入 0407。</noscript>
 <script>
@@ -76,7 +100,7 @@ const canvas=$('world'),ctx=canvas.getContext('2d',{alpha:false});
 let viewport={w:innerWidth,h:innerHeight,dpr:1},camera={x:0,y:0,view:0,lamp:1},mouse={x:0,y:0};
 
 class Soundscape{
- constructor(){this.ctx=null;this.ready=false;this.lastBreath=-10;this.lastHeartbeat=-10;this.lastUpdate=-10;this.master=null;this.ambient=null;this.breathBus=null;this.available=true;}
+ constructor(){this.ctx=null;this.ready=false;this.lastBreath=-10;this.lastHeartbeat=-10;this.lastUpdate=-10;this.master=null;this.ambient=null;this.breathBus=null;this.available=true;this.sources=new Set();}
  async init(){
   try{
    if(!this.ctx){
@@ -103,10 +127,10 @@ class Soundscape{
  resume(){if(this.ctx)this.ctx.resume().then(()=>this.setVolume()).catch(()=>{});}
  pan(node,p,bus){const c=this.ctx;if(c.createStereoPanner){const n=c.createStereoPanner();n.pan.value=clamp(p,-1,1);node.connect(n);n.connect(bus||this.fx);return n;}node.connect(bus||this.fx);return null;}
  tone(freq,end,duration,amp,delay=0,pan=0,type='sine'){
-  if(!this.ready)return;const c=this.ctx,t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(Math.max(10,end),t+duration);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(.001,amp),t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+duration);o.connect(g);const p=this.pan(g,pan);o.start(t);o.stop(t+duration+.02);o.onended=()=>{o.disconnect();g.disconnect();p?.disconnect();};
+  if(!this.ready)return;const c=this.ctx,t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(Math.max(10,end),t+duration);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(.001,amp),t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+duration);o.connect(g);const p=this.pan(g,pan);this.sources.add(o);o.start(t);o.stop(t+duration+.02);o.onended=()=>{this.sources.delete(o);o.disconnect();g.disconnect();p?.disconnect();};
  }
  hiss(duration,amp,freq,delay=0,pan=0,bus=null,attack=.012){
-  if(!this.ready)return;const c=this.ctx,t=c.currentTime+delay,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=this.white;f.type='bandpass';f.frequency.value=freq;f.Q.value=.75;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(.001,amp),t+Math.min(attack,duration*.4));g.gain.exponentialRampToValueAtTime(.0001,t+duration);s.connect(f);f.connect(g);const p=this.pan(g,pan,bus);s.start(t);s.stop(t+duration+.04);s.onended=()=>{s.disconnect();f.disconnect();g.disconnect();p?.disconnect();};
+  if(!this.ready)return;const c=this.ctx,t=c.currentTime+delay,s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();s.buffer=this.white;f.type='bandpass';f.frequency.value=freq;f.Q.value=.75;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(.001,amp),t+Math.min(attack,duration*.4));g.gain.exponentialRampToValueAtTime(.0001,t+duration);s.connect(f);f.connect(g);const p=this.pan(g,pan,bus);this.sources.add(s);s.start(t);s.stop(t+duration+.04);s.onended=()=>{this.sources.delete(s);s.disconnect();f.disconnect();g.disconnect();p?.disconnect();};
  }
  knock(count=3,spacing=.42,power=1){for(let i=0;i<count;i++){const d=i*spacing;this.tone(138,48,.25,.38*power,d,.16);this.hiss(.105,.19*power,720,d,.14);this.tone(63,39,.38,.13*power,d+.026,-.1);}}
  click(){this.hiss(.07,.045,1700);this.tone(420,180,.06,.035);}
@@ -124,7 +148,9 @@ class Soundscape{
   if(active&&!game.holding&&t-this.lastBreath>(game.breath<28?1.45:3.6)){this.lastBreath=t;this.hiss(1.25,game.breath<28?.047:.026,1100,0,-.25,this.breathBus,.35);}
   if(active&&game.danger>25&&t-this.lastHeartbeat>lerp(1.1,.48,game.danger/100)){this.lastHeartbeat=t;this.tone(63,42,.2,.06);this.tone(55,39,.15,.038,.2);}
  }
- reset(){this.lastBreath=-10;this.lastHeartbeat=-10;this.lastUpdate=-10;if(this.ready)this.ambient.gain.setTargetAtTime(0,this.ctx.currentTime,.15);}
+ whisper(side=-.8){for(let i=0;i<5;i++){this.hiss(.22+i*.09,.024,550+i*320,i*.19,side,null,.06);this.tone(138+i*9,90,.28,.012,i*.22,side,'triangle');}}
+ chain(){for(let i=0;i<6;i++)this.tone(870+i*79,140+i*13,.17,.035,i*.07,.38,'triangle');this.creak();}
+ reset(){for(const source of this.sources){try{source.stop();}catch{}}this.sources.clear();this.lastBreath=-10;this.lastHeartbeat=-10;this.lastUpdate=-10;if(this.ready)this.ambient.gain.setTargetAtTime(0,this.ctx.currentTime,.15);}
 }
 const audio=new Soundscape();
 
@@ -195,7 +221,7 @@ function sceneTransform(){const {w,h}=viewport,s=Math.max(w/1600,h/1000)*1.015;c
 function drawRoom(t){
  const {w,h}=viewport,{s,ox,oy}=sceneTransform();ctx.save();ctx.translate(ox,oy);ctx.scale(s,s);ctx.drawImage(room,0,0);
  const attack=game.attack,shake=game.slamUntil>game.time?(settings.gentle||reduceMotion.matches?0:Math.sin(t*83)*6*(game.slamUntil-game.time)):0;
- const gentleShake=attack&&!reduceMotion.matches&&attack.age>attack.warn?Math.sin(t*45)*.38:0;
+ const gentleShake=attack&&!settings.gentle&&!reduceMotion.matches&&attack.age>attack.warn?Math.sin(t*45)*.38:0;
  ctx.drawImage(door,818+shake+gentleShake,165);
  // Handle turns visibly and has a synchronized text/audio cue.
  const handleAngle=attack?Math.sin(Math.min(1,attack.age/.9)*Math.PI/2)*(.29+Math.sin(t*9)*.055):0;
@@ -210,6 +236,7 @@ function drawRoom(t){
  }
  if(camera.lamp>.02){ctx.globalCompositeOperation='screen';rect(ctx,690,0,910,840,radial(ctx,1266,311,540,`rgba(208,176,96,${camera.lamp*.23})`,'rgba(159,134,63,0)'));ellipse(ctx,1269,292,26,4,`rgba(241,220,165,${camera.lamp*.6})`);rect(ctx,1110,154,330,365,radial(ctx,1269,296,185,`rgba(224,201,126,${camera.lamp*.1})`,'rgba(180,171,108,0)'));ctx.globalCompositeOperation='source-over';}
  if(game.eyeAwake&&game.state!=='landing'){ellipse(ctx,1000,388,2.1,2.1,`rgba(169,170,123,${.14+Math.sin(t*.9)*.08})`);}
+ drawChapterDetails(t);
  // Darkness remains legible; no strobes or alternating bright frames.
  rect(ctx,0,0,2200,1000,`rgba(2,9,5,${(1-camera.lamp)*.78})`);
  if(!settings.gentle&&!reduceMotion.matches&&camera.lamp>.2){for(let i=0;i<19;i++){const x=990+Math.sin(t*.12+i*7.91)*310,y=170+(i*43+t*(2+i%3))%570;ellipse(ctx,x,y,.55,.55,`rgba(201,209,157,${.06+Math.sin(i)*.025})`);}}
@@ -269,218 +296,504 @@ function drawPeephole(t){
  line(ctx,-420,87,-54,47,'rgba(127,138,89,.22)',2);line(ctx,420,85,54,47,'rgba(129,139,96,.15)',2);line(ctx,-420,309,-54,110,'#0c170c',3);line(ctx,420,309,54,110,'#0b160b',3);
  for(let i=0;i<8;i++){const yy=126+Math.pow(i/7,1.7)*300;line(ctx,-420,yy,420,yy,'rgba(4,14,4,.38)',2);}for(let i=-4;i<5;i++)line(ctx,i*10,126,i*146,420,'rgba(5,16,4,.48)',2);
  line(ctx,-420,-420,0,-225,'rgba(139,144,103,.07)');line(ctx,420,-420,0,-225,'rgba(139,144,103,.07)');line(ctx,0,-279,0,-235,'#434c32',2);ellipse(ctx,0,-231,22,4,'#969565');ellipse(ctx,0,-227,14,3,'#c9c090');rect(ctx,-300,-400,600,640,radial(ctx,0,-223,320,'rgba(177,173,103,.11)','rgba(139,147,89,0)'));
- const present=game.attack||game.time>20&&game.time<43||game.time>65&&game.time<80||game.eyeAwake;
+ const present=!game.paperUntil||game.time>game.paperUntil ? (game.attack||game.time>25&&game.time<43||game.eyeAwake) : false;
  if(present){const near=game.eyeAwake?1.48:game.attack?1.05:.47;drawFigure(ctx,game.eyeAwake?Math.sin(t*.26)*5:4,game.eyeAwake?-90:-26,near,game.eyeAwake||!!game.attack);}
+ if(game.paperUntil>game.time){rect(ctx,-51,-72,103,92,'#aea484');ctx.fillStyle='#282c23';ctx.font='14px serif';ctx.textAlign='center';ctx.fillText('时间被删掉了',0,-49);ctx.font='27px serif';ctx.fillText(CHAPTERS[game.level].fragment,0,-7);ctx.font='9px monospace';ctx.fillText('0407 / '+String(game.level+1).padStart(2,'0'),0,10);}
  ctx.globalAlpha=.2;ctx.fillStyle=ctx.createPattern(texture,'repeat');ctx.fillRect(-420,-420,840,840);ctx.globalAlpha=1;
  const g=ctx.createRadialGradient(-12,0,130,0,0,405);g.addColorStop(0,'rgba(1,8,3,0)');g.addColorStop(.72,'rgba(2,8,3,.22)');g.addColorStop(.95,'rgba(0,5,1,.85)');g.addColorStop(1,'#010402');rect(ctx,-410,-410,820,820,g);ctx.restore();
  ctx.beginPath();ctx.arc(cx,cy,r+2,0,Math.PI*2);ctx.strokeStyle='rgba(90,99,66,.3)';ctx.lineWidth=3;ctx.stroke();ctx.beginPath();ctx.arc(cx,cy,r+7,0,Math.PI*2);ctx.strokeStyle='rgba(139,133,90,.12)';ctx.lineWidth=1;ctx.stroke();
 }
-function drawScare(){
- if(!game.scare)return;const {age,kind}=game.scare,{w,h}=viewport;const duration=kind==='death'?1.2:.82;const a=age<.1?ease(age/.1):1-clamp((age-(kind==='death'?.84:.39))/(duration-(kind==='death'?.84:.39)),0,1);
- if(settings.gentle){rect(ctx,0,0,w,h,`rgba(1,7,3,${a*.77})`);return;}
- ctx.save();ctx.globalAlpha=a;rect(ctx,0,0,w,h,'#040b05');const n=reduceMotion.matches?0:Math.sin(age*95)*4*(1-age/duration);const zoom=reduceMotion.matches?1:lerp(.72,1.05,ease(age/.15));const scale=Math.max(w/420,h/340)*zoom;
- drawFace(ctx,w*.5+n,h*.37,scale);const edge=ctx.createRadialGradient(w*.5,h*.45,Math.min(w,h)*.2,w*.5,h*.45,Math.max(w,h)*.65);edge.addColorStop(0,'rgba(0,5,1,0)');edge.addColorStop(1,'rgba(0,5,1,.9)');rect(ctx,0,0,w,h,edge);ctx.restore();
+function drawChapterDetails(t){
+ if(game.state==='landing')return;
+ const level=game.level||0;
+ // The same door slowly deteriorates. All marks are drawn once per frame, no image requests.
+ if(level>0){ctx.globalAlpha=.28+level*.07;for(let i=0;i<Math.min(12,level*3);i++){let x=874+i*19,y=425+(i%3)*35;line(ctx,x,y,x+2+Math.sin(i)*6,y+50+i*3,'#102016',1.4);line(ctx,x+2,y+10,x+4,y+45,'#7e8055',.5);}ctx.globalAlpha=1;}
+ if(game.coverClosed){ellipse(ctx,1000,388,10,10,'#333d29');ellipse(ctx,1000,388,7.7,7.7,'#6b704b');line(ctx,995,383,1005,393,'#8d8b61',1);}
+ if(level>=2){
+  const tension=game.attack&&(game.attack.type==='chain'||game.attack.type==='final');
+  rect(ctx,1154,421,19,31,'#505d3a');rect(ctx,1200,411,13,34,'#556241');
+  const wobble=tension&&!settings.gentle&&!reduceMotion.matches?Math.sin(t*28)*(game.bracing?1.1:3.6):0;
+  for(let i=0;i<9;i++){ctx.save();ctx.translate(1164+i*5.1,431+Math.sin(i/8*Math.PI)*(tension?2:15)+wobble);ctx.rotate(i%2?.5:-.35);ctx.strokeStyle=game.bracing?'#beb58b':'#858969';ctx.lineWidth=1.8;ctx.beginPath();ctx.ellipse(0,0,5,2.7,0,0,Math.PI*2);ctx.stroke();ctx.restore();}
+ }
+ if(game.handUntil>game.time||game.attack&&(game.attack.type==='chain'||game.attack.type==='final')){
+  const a=game.attack?clamp((game.attack.age-game.attack.warn+.9)/1.6,0,1):clamp((game.handUntil-game.time)/2,0,1);
+  for(let i=0;i<5;i++){const xx=997+i*12,len=(27+Math.sin(i*.7)*17)*a;ctx.save();ctx.translate(xx,841);ctx.rotate(-.2+i*.11);ellipse(ctx,0,len*.5,4.2,len*.6,'#626d4d');ellipse(ctx,0,len*.82,2.4,4,'#293621');ctx.restore();}
+ }
+ if(game.danger>35){const a=clamp((game.danger-35)/65,0,1);rect(ctx,1180,262,a*12,574,'#010603');if(a>.55)drawFace(ctx,1183,360,.19,a*.7);}
+ if(level>=4){rect(ctx,1221,419,101,16,'#14231a');ctx.fillStyle=game.powerUntil>t?'#9f7c65':'#859273';ctx.font='8px monospace';ctx.fillText(game.powerUntil>t?'MAINS / OFF':'MAINS / 0407',1229,430);}
+ if(game.falseDawnUntil>t)rect(ctx,820,830,360,8,'#c3b289');
 }
+function drawScare(){
+ if(!game.scare)return;
+ const {age,kind}=game.scare,{w,h}=viewport,duration=kind==='death'?1.4:1.08;
+ const a=age<.075?ease(age/.075):1-clamp((age-(kind==='death'?1.04:.68))/(duration-(kind==='death'?1.04:.68)),0,1);
+ if(settings.gentle){rect(ctx,0,0,w,h,`rgba(1,7,3,${a*.72})`);return;}
+ ctx.save();ctx.globalAlpha=a;rect(ctx,0,0,w,h,'#030705');
+ const n=reduceMotion.matches?0:Math.sin(age*57)*5*(1-age/duration);
+ const zoom=reduceMotion.matches?1:lerp(.68,1.17,ease(age/.12));
+ if(kind==='eye'){
+  drawFace(ctx,w*.5+Math.min(w,h)*.37,h*.71,Math.max(w/157,h/122)*zoom);
+ }else{
+  const scale=Math.max(w/408,h/327)*zoom;
+  ctx.save();ctx.translate(w*.5+n,h*.34);ctx.rotate(kind==='echo'?-.16:kind==='breach'?.09:-.035);
+  drawFace(ctx,0,0,scale);
+  if(kind==='death'||kind==='breach'){
+   ctx.scale(scale,scale);const g=ctx.createRadialGradient(0,111,3,0,111,51);g.addColorStop(0,'#000201');g.addColorStop(.85,'#020604');g.addColorStop(1,'#18251a');ellipse(ctx,0,114,31,49,g);
+   for(let i=0;i<7;i++)ellipse(ctx,-20+i*6.5,75+Math.abs(i-3)*1.3,2.4,4.2,'#69705c');
+   line(ctx,-35,89,-53,80,'#051008',3);line(ctx,30,91,46,74,'#051008',3);
+  }
+  ctx.restore();
+ }
+ const edge=ctx.createRadialGradient(w*.5,h*.45,Math.min(w,h)*.21,w*.5,h*.45,Math.max(w,h)*.64);edge.addColorStop(0,'rgba(0,4,1,0)');edge.addColorStop(1,'rgba(0,4,1,.96)');rect(ctx,0,0,w,h,edge);ctx.restore();
+}
+
 function render(dt,now){
  const {w,h,dpr}=viewport;ctx.setTransform(dpr,0,0,dpr,0,0);rect(ctx,0,0,w,h,'#0a120c');
  const active=game.state!=='landing',move=!settings.gentle&&!reduceMotion.matches;const blend=1-Math.exp(-dt*2.2);camera.view=lerp(camera.view,active?1:0,blend);camera.lamp=lerp(camera.lamp,game.lightOn?1:.04,Math.min(1,dt*6));camera.x=lerp(camera.x,move?mouse.x*(active?5:9):0,Math.min(1,dt*2));camera.y=lerp(camera.y,move?mouse.y*4:0,Math.min(1,dt*2));
  const t=game.state==='landing'?now:game.time;if(game.peeking)drawPeephole(t);else drawRoom(t);drawScare();
 }
-const DURATION=180;
-const inputs={breathKey:false,peepKey:false,breathPointers:new Set(),peepPointers:new Set()};
-let modalOrigin=null,lastFocus=null,toastTimer=0,uiAccumulator=0;
-const isPlaying=()=>game.state==='playing'&&$('panel').classList.contains('hidden');
+/* ================================================================
+   CAMPAIGN DATA. Each chapter covers three fictional minutes.
+   duration is real play time in seconds. No backend or asset loading.
+   ================================================================ */
+const CHAPTERS = [
+ {title:'第一次敲门',start:16920,duration:90,fragment:'不要',
+  story:'04:42。电话自己接通了。\n听筒里没有人说话，只有三下敲门。\n三秒后，敲门声从你的门外响起。',
+  rule:'门把手转动时，按 L 关灯，同时按住空格屏息。等顶部提示“脚步远去”后再松开。普通敲门不用回应。',
+  objective:'关灯、屏息。不要回应第一位访客。',outro:'门外的人走了三步。\n然后，它又走了回来。'},
+ {title:'另一只眼睛',start:17100,duration:105,fragment:'回应',
+  story:'你没有碰过猫眼。\n但镜片里面，正在慢慢起雾。\n那口气，是从另一边吹进来的。',
+  rule:'新增 C：开关猫眼挡片。“反窥”出现时，遮住猫眼即可，不必屏息。门把手转动仍需关灯、屏息。按 E 观察前先打开挡片。',
+  objective:'挡住反窥。别让它认出你的眼睛。',outro:'挡片后面，传来了指甲声。\n它知道你刚才在看。'},
+ {title:'门链的重量',start:17280,duration:110,fragment:'五点',
+  story:'反锁的门，开了一条不该存在的缝。\n门链绷直了。\n你这才想起来：这扇门，原本没有门链。',
+  rule:'新增 R：按住顶住门链。“撞门”时保持熄灯并顶门，不必屏息；普通转把手仍需屏息。腕力耗尽后必须松开恢复。',
+  objective:'熄灯并顶门。别让那条缝扩大。',outro:'你松开手的时候，门链还是热的。\n有人，在门的另一侧握着它。'},
+ {title:'它没有走',start:17460,duration:120,fragment:'的',
+  story:'“我走了。”\n门外的声音第一次说话。\n它说完以后，门缝里的脚没有动。',
+  rule:'“双重回声”会试探两次。先熄灯屏息；看到顶部“换气窗口”时松开空格恢复，再按提示屏息。只有“脚步远去”才代表结束。',
+  objective:'利用换气窗口。别相信它说的“走了”。',outro:'你数过了。那个人有两道脚步声。\n一道远去。另一道，一直没动。'},
+ {title:'断电层',start:17640,duration:125,fragment:'你',
+  story:'整层楼的灯，同时熄灭。\n门外响起物业的声音：\n“正在恢复供电，请您站在灯下。”',
+  rule:'停电时灯无法打开；供电恢复可能让灯自动亮起，预告后及时按 L 关闭。部分撞门还必须遮住猫眼。操作条件会列在按钮上方。',
+  objective:'检查复电后的灯光。不要站在光里。',outro:'电回来了。\n门外却响起一句很轻的话：\n“怎么只有你，还活着？”'},
+ {title:'五点并不安全',start:17820,duration:140,fragment:'自己',
+  story:'墙上的钟指向五点。\n手机上的时间，却还停在四点五十七分。\n敲门声，从你的录音里传了出来。',
+  rule:'最后一章会组合所有规则。终局撞门时：熄灯、遮眼，并同时按住空格和 R。不要相信突然跳到五点的时钟，必须等本章真正结束。',
+  objective:'守住最后一道门。等时间线真正结束。',outro:''}
+];
+let DURATION=CHAPTERS[0].duration;
+const inputs={breathKey:false,peepKey:false,braceKey:false,breathPointers:new Set(),peepPointers:new Set(),bracePointers:new Set()};
+let modalOrigin=null,lastFocus=null,archiveOrigin=null,archiveFocus=null,archiveSelected=0,toastTimer=0,uiAccumulator=0;
+const rawCampaign=load('dna.campaign.v2',{});
+const persistentStorage=(()=>{try{const k='dna.storage-probe';localStorage.setItem(k,'1');const ok=localStorage.getItem(k)==='1';localStorage.removeItem(k);return ok;}catch{return false;}})();
+const validIndex=x=>Number.isInteger(x)&&x>=0&&x<CHAPTERS.length;
+const campaign={
+ unlocked:clamp(Math.floor(Number(rawCampaign?.unlocked)||0),0,5),
+ checkpoint:clamp(Math.floor(Number(rawCampaign?.checkpoint)||0),0,5),
+ completed:Array.isArray(rawCampaign?.completed)?[...new Set(rawCampaign.completed.filter(validIndex))]:[],
+ fragments:Array.isArray(rawCampaign?.fragments)?[...new Set(rawCampaign.fragments.filter(validIndex))]:[],
+ logs:Array.isArray(rawCampaign?.logs)?rawCampaign.logs.filter(x=>x&&validIndex(x.level)&&typeof x.id==='string'&&typeof x.title==='string'&&typeof x.body==='string'&&Number.isFinite(x.second)).slice(-250):[],
+ deaths:Math.max(0,Math.floor(Number(rawCampaign?.deaths)||0)),
+ endings:Array.isArray(rawCampaign?.endings)?[...new Set(rawCampaign.endings.filter(x=>x==='normal'||x==='truth'))]:[]
+};
+if(campaign.completed.length)campaign.unlocked=Math.max(campaign.unlocked,Math.min(5,Math.max(...campaign.completed)+1));
+campaign.checkpoint=Math.min(campaign.checkpoint,campaign.unlocked);
+const isPlaying=()=>game.state==='playing';
+const chapter=()=>CHAPTERS[game.level||0];
+const persistCampaign=()=>save('dna.campaign.v2',campaign);
 function persistSettings(){save('dna.settings.v1',settings);}
 function syncSettings(){
  $('gentleLanding').checked=settings.gentle;$('gentlePanel').checked=settings.gentle;$('volumeRange').value=settings.volume;$('volumeValue').textContent=settings.volume+'%';
  const quiet=settings.muted||settings.volume===0;$('landingSound').textContent=quiet?'声音关闭':'声音开启';$('muteBtn').setAttribute('aria-label',quiet?'开启声音（M）':'静音（M）');$('muteBtn').setAttribute('aria-pressed',String(quiet));$('soundUse').setAttribute('href',quiet?'#i-mute':'#i-sound');
 }
 function toast(text){clearTimeout(toastTimer);$('toast').textContent=text;$('toast').classList.add('show');toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3400);}
-function clockText(t){const seconds=4*3600+57*60+Math.floor(clamp(t,0,DURATION));return[Math.floor(seconds/3600),Math.floor(seconds/60)%60,seconds%60].map(v=>String(v).padStart(2,'0')).join(':');}
+function stamp(seconds){const s=Math.max(0,Math.floor(seconds));return[Math.floor(s/3600)%24,Math.floor(s/60)%60,s%60].map(v=>String(v).padStart(2,'0')).join(':');}
+function canonical(t=game.time,level=game.level||0){const ch=CHAPTERS[level];return ch.start+Math.floor(clamp(t/ch.duration,0,1)*180+1e-8);}
+function clockText(t=game.time){return stamp(canonical(t));}
+function chapterRange(level){return stamp(CHAPTERS[level].start).slice(0,5)+' — '+stamp(CHAPTERS[level].start+180).slice(0,5);}
 function durationText(t){const v=Math.max(0,Math.floor(t));return String(Math.floor(v/60)).padStart(2,'0')+':'+String(v%60).padStart(2,'0');}
 function showRecord(){
- $('lastRecord').textContent=record.wins>0?`已有 ${record.wins} 次，门没有被打开。`:record.best>0?`上一次，你等到了 ${clockText(record.best)}。`:'';
+ const begun=campaign.logs.length>0||campaign.checkpoint>0;
+ $('startBtn').firstElementChild.textContent=begun?'继续第 '+String(campaign.checkpoint+1).padStart(2,'0')+' 章':'进入 0407';
+ $('newBtn').classList.toggle('hidden',!begun);
+ $('lastRecord').textContent=!persistentStorage?'本地存储不可用 · 本次仍可完整游玩，关闭页面后进度不保留':begun?`已守住 ${campaign.completed.length}/6 章　·　档案碎片 ${campaign.fragments.length}/6　·　章节起点自动保存`:'六章连续剧情 / 可重试当前章 / 两种最终结局';
 }
 function say(text,seconds=4,warning=false,force=false){if(game.attack&&!warning&&!force)return;$('subtitle').textContent=text;$('subtitle').classList.add('on');$('subtitle').classList.toggle('warning',warning);game.subtitleUntil=game.time+seconds;}
-function releaseInputs(){inputs.breathKey=false;inputs.peepKey=false;inputs.breathPointers.clear();inputs.peepPointers.clear();game.holding=false;game.peeking=false;game.peekTime=0;}
+function recordEvent(key,title,body,kind='story',at=game.time){
+ const level=game.level||0,id=level+':'+key;if(campaign.logs.some(x=>x.id===id))return;
+ campaign.logs.push({id,level,second:canonical(at,level),title,body,kind});persistCampaign();
+}
+function releaseInputs(){for(const type of ['breath','peep','brace']){inputs[type+'Key']=false;inputs[type+'Pointers'].clear();}game.holding=false;game.bracing=false;game.peeking=false;game.peekTime=0;}
 function syncInputs(){
  if(!isPlaying())return;
  const hold=(inputs.breathKey||inputs.breathPointers.size>0)&&game.breath>.1&&game.time>=game.exhaustedUntil;
- if(hold&&!game.holding){game.holds++;audio.hiss(.24,.014,860,0,-.2);}
- game.holding=hold;
- const peek=(inputs.peepKey||inputs.peepPointers.size>0)&&game.time>=game.peekBlockedUntil;
+ if(hold&&!game.holding){game.holds++;audio.hiss(.24,.014,860,0,-.2);}game.holding=hold;
+ const brace=(inputs.braceKey||inputs.bracePointers.size>0)&&game.stamina>.1&&game.time>=game.armExhaustedUntil&&game.level>=2;
+ if(brace&&!game.bracing)audio.hiss(.2,.025,640,0,.3);game.bracing=brace;
+ const peek=(inputs.peepKey||inputs.peepPointers.size>0)&&!game.coverClosed&&!game.bracing&&game.time>=game.peekBlockedUntil;
  if(peek&&!game.peeking){game.peeks++;game.peekTime=0;audio.hiss(.16,.016,1650,0,.06);}
  if(!peek)game.peekTime=0;game.peeking=peek;
 }
-function toggleLamp(){if(!isPlaying())return;game.lightOn=!game.lightOn;audio.click();updateUI();}
-function toggleMute(){settings.muted=!settings.muted;if(!settings.muted&&settings.volume===0)settings.volume=55;audio.setVolume();if(isPlaying())audio.resume();persistSettings();syncSettings();}
-function setGentle(value){settings.gentle=value;persistSettings();syncSettings();}
-
-function newNight(){
- const random=rng((Date.now()^Math.floor(Math.random()*1e9))>>>0);
- return{state:'playing',time:0,breath:100,danger:0,lightOn:true,holding:false,peeking:false,peekTime:0,exhaustedUntil:0,peekBlockedUntil:0,attack:null,scare:null,slamUntil:0,shadowUntil:0,quietUntil:0,eyeAwake:false,doorHover:false,subtitleUntil:0,peepScares:0,peeks:0,holds:0,dodged:0,exposures:0,events:[],eventIndex:0,deathCause:'',won:false,random,clockCache:'',chapterCache:-1,lastHint:false};
+function toggleLamp(){
+ if(!isPlaying())return;
+ if(game.powerUntil>game.time){audio.click();toast('整层楼已断电，灯暂时无法打开。');return;}
+ game.lightOn=!game.lightOn;audio.click();
+ if(game.lightOn&&!game.attack&&game.level>=1&&game.time>37&&!game.lightScareUsed){game.lightScareUsed=true;game.pendingScareAt=game.time+.55;}
+ updateUI();
 }
-function beginAttack(number){
- if(game.state!=='playing')return;
- const duration=[4.8,5.2,5.5,5.6][number-1],warn=[2.4,2.4,2.5,2.6][number-1];
- game.attack={number,start:game.time,age:0,warn,duration,entered:false,protected:0};game.shadowUntil=game.time+warn+duration+1.8;
- audio.knock(3,.25,.67);audio.latch();say('门把手，在转。关灯，按住「屏息」。',warn+duration+.2,true,true);
- $('alertCue').textContent='门把手在动 · 熄灯并屏息';$('alertCue').classList.add('on');
+function toggleCover(){
+ if(!isPlaying())return;game.coverClosed=!game.coverClosed;audio.hiss(.16,.035,1740);
+ if(game.coverClosed){inputs.peepKey=false;inputs.peepPointers.clear();game.peeking=false;game.peekTime=0;}syncInputs();updateUI();
+}
+function toggleMute(){settings.muted=!settings.muted;if(!settings.muted&&settings.volume===0)settings.volume=45;audio.setVolume();if(isPlaying())audio.resume();persistSettings();syncSettings();}
+function setGentle(value){settings.gentle=value;persistSettings();syncSettings();}
+function newNight(level){
+ return{state:'briefing',level,time:0,breath:100,stamina:100,danger:0,lightOn:true,coverClosed:level>=1,holding:false,bracing:false,peeking:false,peekTime:0,
+  exhaustedUntil:0,armExhaustedUntil:0,peekBlockedUntil:0,attack:null,scare:null,slamUntil:0,shadowUntil:0,handUntil:0,quietUntil:0,powerUntil:0,paperUntil:0,falseDawnUntil:0,cinematicUntil:0,graceUntil:0,pendingScareAt:0,
+  eyeAwake:false,doorHover:false,subtitleUntil:0,peepScares:0,peeks:0,holds:0,dodged:0,exposures:0,events:[],eventIndex:0,deathCause:'',won:false,final:false,threatCount:0,
+  random:rng((Date.now()^Math.floor(Math.random()*1e9))>>>0),clockCache:'',lightScareUsed:false,lastScareAt:-20,requirementCache:'',railCache:-1};
+}
+function threatNeeds(a=game.attack){
+ if(!a)return[];
+ const result=[];
+ if(a.type!=='eye')result.push({key:'dark',label:'熄灯',met:!game.lightOn});
+ if(['latch','echo','final'].includes(a.type)&&a.phase!=='rest')result.push({key:'breath',label:'屏息',met:game.holding});
+ if(a.type==='eye'||a.cover||a.type==='final')result.push({key:'cover',label:'遮眼',met:game.coverClosed});
+ if(a.type==='chain'||a.type==='final')result.push({key:'brace',label:'顶门',met:game.bracing});
+ return result;
+}
+function beginThreat(type,options={}){
+ if(!isPlaying())return;
+ const warn=options.warn??(game.level===0?2.9:2.5),duration=options.duration??(type==='echo'?10.4:5.2);
+ game.attack={type,cover:!!options.cover,start:game.time,age:0,warn,duration,phase:'warning',entered:false,protected:0,number:++game.threatCount};
+ game.shadowUntil=game.time+warn+duration+2;
+ if(type==='eye'){audio.scrape();audio.whisper(.65);game.eyeAwake=true;}
+ else if(type==='chain'||type==='final'){audio.chain();game.slamUntil=game.time+.6;game.handUntil=game.time+warn+duration;}
+ else{audio.knock(type==='echo'?2:3,.26,.72);audio.latch();}
+ const title=type==='eye'?'猫眼正在变暗 · 立即遮住猫眼':type==='chain'?'门链绷紧 · 关灯并按住顶门':type==='final'?'它在推门 · 熄灯、遮眼、屏息并顶门':type==='echo'?'两次试探 · 先关灯并屏息':'门把手在转 · 关灯并屏息';
+ say(title+(options.cover&&type!=='final'?'，保持猫眼挡片关闭。':''),warn+duration+1,true,true);
+ refreshThreatCue();updateUI();
+}
+function refreshThreatCue(){
+ const a=game.attack;if(!a){$('alertCue').classList.remove('on','safe-cue');return;}
+ let text;
+ if(a.phase==='rest')text='换气窗口 · 松开屏息，保持熄灯';
+ else if(a.type==='eye')text='反窥 · 保持猫眼挡片关闭';
+ else if(a.type==='chain')text='撞门 · 熄灯 + 顶门'+(a.cover?' + 遮眼':'');
+ else if(a.type==='final')text='最后的撞门 · 熄灯 / 遮眼 / 屏息 / 顶门';
+ else if(a.type==='echo')text=a.phase==='second'?'它回来了 · 再次屏息，保持熄灯':'第一次试探 · 熄灯并屏息';
+ else text='门把手在动 · 保持熄灯、屏息'+(a.cover?'、遮眼':'');
+ if(a.phase==='warning')text+=' · 准备';
+ $('alertCue').textContent=text;$('alertCue').classList.add('on');$('alertCue').classList.toggle('safe-cue',a.phase==='rest');
+}
+function triggerScare(kind='echo',text='它离门，比刚才更近了。',force=false){
+ if(!isPlaying()||(!force&&game.time-game.lastScareAt<7))return;
+ game.lastScareAt=game.time;game.scare={kind,age:0};game.slamUntil=game.time+.6;audio.startle(kind);say(text,4,true,true);
 }
 function scareFromPeephole(){
- game.peepScares++;game.eyeAwake=true;game.danger=Math.min(94,game.danger+34);game.scare={kind:'peek',age:0};game.peekBlockedUntil=game.time+1.2;inputs.peepKey=false;inputs.peepPointers.clear();game.peeking=false;game.peekTime=0;audio.startle();say('猫眼的另一边，也在看你。',4.2,true,true);
+ game.peepScares++;game.eyeAwake=true;game.danger=Math.min(85,game.danger+25);game.peekBlockedUntil=game.time+1.4;
+ inputs.peepKey=false;inputs.peepPointers.clear();game.peeking=false;game.peekTime=0;
+ recordEvent('watched','反窥记录','你靠得太近了。猫眼另一侧的眼睛，没有眨动。','threat');
+ triggerScare('eye','别再盯着它看。它也在记你的脸。',true);
 }
+function showPaper(){game.paperUntil=game.time+11;audio.scrape();say('猫眼外出现一张纸。打开挡片，短看一下就能记住。',6,false,true);}
+function collectFragment(){
+ if(campaign.fragments.includes(game.level))return;
+ campaign.fragments.push(game.level);campaign.fragments.sort((a,b)=>a-b);
+ recordEvent('fragment','档案碎片 '+String(game.level+1).padStart(2,'0'),'纸条上写着「'+chapter().fragment+'」。这不是它第一次敲你的门。','evidence');
+ persistCampaign();toast('已记录碎片「'+chapter().fragment+'」 · '+campaign.fragments.length+'/6');
+ say('记住了。现在离开猫眼。',3,true,true);
+}
+function blackout(until){game.lightOn=false;game.powerUntil=until;audio.tone(90,27,.85,.12);audio.hiss(.42,.065,840);say('断电了。开关暂时失效。',4,true,true);}
+function restorePower(){game.powerUntil=0;game.lightOn=true;game.graceUntil=game.time+1.6;audio.click();say('供电恢复，灯亮了。危险还在时，立刻关灯。',4.5,true,true);}
+function cinematic(title,text,seconds=4){$('cinematicTitle').textContent=title;$('cinematicSub').textContent=text;$('cinematicText').classList.add('shown');game.cinematicUntil=game.time+seconds;}
 function createEvents(){
- const events=[],add=(at,name,run)=>events.push({at,name,run});const jitter=()=> (game.random()-.5)*2.2;
- add(0,'arrival',()=>say('04:57。熬过这三分钟。',6));
- add(4.5,'first knocks',()=>{audio.knock(2,.78,.56);say('笃。……笃。',3.2);});
- add(10.5,'reminder',()=>say('物业留言：门把手动时，关灯，按住屏息。',7));
- add(18,'first shadow',()=>{game.shadowUntil=game.time+7;audio.hiss(1.6,.029,420,0,.15,null,.4);say('门缝下面，有一双脚。',4);});
- add(25,'approach',()=>{audio.creak();say('有人，停在了你的门前。',3.3);});
- add(29+jitter(),'trial 1',()=>beginAttack(1));
- add(43,'leaving',()=>{audio.knock(1,.4,.24);});
- add(49,'paper',()=>{audio.scrape();say('门外的人，没有离开这层楼。',4.5);});
- add(56.5,'polite knock',()=>{audio.knock(3,.68,.39);say('这次，敲门声很有礼貌。别回应。',4.5);});
- add(62,'shadow returns',()=>{game.shadowUntil=game.time+8;audio.hiss(1.3,.035,670,0,-.3,null,.3);});
- add(68+jitter(),'trial 2',()=>beginAttack(2));
- add(85,'peephole blocked',()=>{game.eyeAwake=true;audio.scrape();say('猫眼的光，被什么挡住了。',4.5);});
- add(94,'waiting',()=>say('它在等你靠近。',4));
- add(99,'silence',()=>{game.quietUntil=game.time+7;game.shadowUntil=game.time+11;say('所有声音，都停了。',4);});
- add(106,'door impact',()=>{audio.slam();game.slamUntil=game.time+.75;say('砰。它还在。',3.5,true);});
- add(116+jitter(),'trial 3',()=>beginAttack(3));
- add(137,'closer',()=>{audio.hiss(1.8,.039,1080,0,-.55,null,.3);game.shadowUntil=game.time+12;say('门外，传来了很轻的呼吸声。',5);});
- add(146,'gentle taps',()=>{audio.knock(2,1.2,.29);say('它开始把敲门声，放得很轻。',4.5);});
- add(153,'false peace',()=>{game.quietUntil=game.time+5;say('天快亮了。不要相信这片安静。',5);});
- add(159,'last knock',()=>{audio.knock(1,.6,.62);game.shadowUntil=game.time+20;say('最后二十一秒。离门远一点。',4);});
- add(165+jitter(),'trial 4',()=>beginAttack(4));
- add(176,'last seconds',()=>say('再等四秒。别应门。',4.5));
+ const events=[],add=(at,key,title,body,run,kind='story')=>events.push({at,key,title,body,run,kind});
+ const note=(at,key,title,text,run=()=>{},kind='story')=>add(at,key,title,text,()=>{run();say(text,4.7,kind==='threat');},kind);
+ const attack=(at,type,options={})=>{
+  const names={latch:'门把手转动',eye:'另一侧的反窥',chain:'门链第一次绷紧',echo:'两道脚步声',final:'最后一道门'};
+  const desc={latch:'它尝试确认灯光和呼吸。熄灯、屏息才能避开。',eye:'它把眼睛贴上了镜片。挡片是唯一的遮挡。',chain:'缝隙在扩大。关灯并顶住门链。',echo:'“我走了”之后，试探仍在继续。中间只有一个短暂换气窗口。',final:'所有动静在同一刻出现。熄灯、遮眼、屏息、顶门，缺一不可。'};
+  add(at+(game.random()-.5)*1.1,'threat-'+at,names[type],desc[type]+(options.cover?' 同时必须保持挡片关闭。':''),()=>beginThreat(type,options),'threat');
+ };
+ const scare=(at,key,kind,text)=>add(at,key,'异常近距离接触',text,()=>triggerScare(kind,text),'threat');
+ add(0,'arrival','记录开始',chapter().story,()=>say(chapter().story.split('\n')[0]+' 只相信危险提示，不要回应门外。',6));
+ add(14,'paper','夹在猫眼外的纸','一张残缺的纸条挡住了走廊。短暂观察即可记录；持续凝视会招来反窥。',showPaper,'evidence');
+ switch(game.level){
+  case 0:
+   note(6,'knock','电话里的三下敲门','笃。笃。……笃。',()=>audio.knock(3,.62,.6));
+   note(11,'rule','物业留言','物业留言：门把手转动才是真正的危险。',()=>audio.whisper(-.65));
+   note(26,'shadow','门缝里的脚','那双脚，朝着你的门。',()=>{game.shadowUntil=game.time+13;audio.creak();});
+   attack(31,'latch',{warn:3,duration:4.3});
+   note(45,'voice','门外的请求','门外：“你能听见，对吗？”',()=>audio.whisper(.82));
+   note(50,'silence','突然消失的底噪','所有声音，停了。',()=>game.quietUntil=game.time+5);
+   scare(55,'impact','breach','砰。门向你这边，弯了一下。');
+   attack(66,'latch',{warn:2.8,duration:4.8});
+   note(81,'outro','三步之外','脚步走了三步。又走了回来。',()=>audio.steps());break;
+  case 1:
+   note(7,'fog','从外侧出现的雾气','猫眼里那口气，不是你的。',()=>audio.hiss(2,.045,780,0,.7,null,.4));
+   attack(29,'eye',{warn:2.8,duration:5});
+   note(43,'scratch','镜片后面的划痕','门外：“把它打开。我看不见你了。”',()=>audio.scrape());
+   scare(49,'gaze','eye','有一只眼睛，占满了整块镜片。');
+   attack(59,'latch',{warn:2.5,duration:5.1});
+   note(74,'silence','没有离开','你听见了脚步。可门下的影子还在。',()=>{game.quietUntil=game.time+5;game.shadowUntil=game.time+18;});
+   attack(82,'eye',{warn:2.5,duration:5.5});
+   note(98,'outro','一句低语','门外：“我记住了。”',()=>audio.whisper(-.85));break;
+  case 2:
+   note(7,'chain-note','多出来的门链','你从来没有安装过这条门链。',()=>audio.chain());
+   attack(29,'chain',{warn:2.8,duration:5.2});
+   note(43,'fingers','门缝里的手指','门缝下面，有东西在摸地板。',()=>{game.handUntil=game.time+6;audio.scrape();});
+   attack(50,'latch',{warn:2.5,duration:5.2});
+   note(66,'silence','链条松了','门链，突然松掉了。',()=>{audio.chain();game.quietUntil=game.time+6;});
+   scare(73,'breach','breach','它用力撞了第二下。');
+   attack(83,'chain',{warn:2.6,duration:6});
+   note(102,'warm','另一只手','你松开手时，链条还是热的。',()=>audio.whisper(.7));break;
+  case 3:
+   note(7,'promise','它第一次说谎','门外：“这次我真的走了。”',()=>audio.whisper(.9));
+   attack(30,'echo',{warn:2.4});
+   note(48,'one-foot','两道脚步','一串脚步远去。另一串，停在原地。',()=>{audio.steps();game.shadowUntil=game.time+14;});
+   attack(56,'eye',{warn:2.4,duration:5});
+   note(72,'quiet','被切断的声音','你连自己的呼吸，都快听不见了。',()=>game.quietUntil=game.time+7);
+   note(78,'second-knock','相同的节奏','敲门声，和你的心跳一样快。',()=>audio.knock(4,.4,.55));
+   attack(83,'echo',{warn:2.4});
+   note(102,'borrowed','熟悉的声音','门外：“先松开手吧。你已经很累了。”',()=>audio.whisper(-.9));
+   scare(110,'echo-face','echo','声音是你的。脸不是。');break;
+  case 4:
+   note(6,'grid','四楼断电预告','楼道广播：供电异常。请勿离开房间。',()=>audio.tone(350,118,.8,.045));
+   add(10,'blackout','整个楼层熄灭','灯光消失。墙上的开关不再起作用。',()=>blackout(44));
+   attack(31,'chain',{warn:2.6,duration:5.5});
+   note(40,'restore-warning','复电预告','供电即将恢复。灯会自动亮起，注意开关。',()=>audio.hiss(.3,.025,1050), 'threat');
+   add(44,'restore','灯自动亮了','供电恢复后，灯光穿过了门缝。',restorePower,'threat');
+   attack(50,'latch',{warn:2.5,duration:5.1});
+   note(66,'quiet','物业的请求','门外：“请站在灯下，方便我们确认。”',()=>{audio.whisper(.95);game.quietUntil=game.time+6;});
+   attack(74,'eye',{warn:2.4,duration:5.3});
+   add(87,'blackout-2','第二次断电','这次，它提前站到了门外。',()=>blackout(101));
+   attack(94,'chain',{warn:2.7,duration:7.1,cover:true});
+   add(98,'power-warning','危险中的复电预告','三秒后，供电将自动恢复。',()=>say('三秒后供电恢复！保持顶门，灯亮后立即关闭。',4,true,true),'threat');
+   add(101,'restore-2','灯亮时它仍在推门','你必须一边顶住门，一边重新关闭灯光。',restorePower,'threat');
+   scare(113,'light-face','echo','门外：“怎么只有你，还活着？”');break;
+  case 5:
+   note(7,'recording','属于你的录音','录音里传来敲门声。手机的扬声器，却没有开启。',()=>audio.whisper(-.85));
+   attack(29,'latch',{warn:2.5,duration:5.4,cover:true});
+   attack(47,'echo',{warn:2.4});
+   note(65,'no-clock','秒针停了一拍','声音停了。秒针还在走。',()=>game.quietUntil=game.time+5);
+   scare(71,'visitor','echo','你终于看清了，那张没有眨眼的脸。');
+   attack(83,'chain',{warn:2.5,duration:5.8,cover:true});
+   add(101,'false-dawn','伪造的五点','时钟突然跳到了五点，但真实时间线还没有结束。',()=>{game.falseDawnUntil=game.time+6;cinematic('天亮了。','门外：“可以开门了。”',4.5);audio.tone(196,196,1,.028);say('时钟跳秒异常。别相信五点，继续守门。',6,true,true);},'threat');
+   attack(110,'final',{warn:2.6,duration:6});
+   note(123,'last-voice','自己的声音','门外：“我是你。让我进去。”',()=>audio.whisper(.9));
+   attack(130,'latch',{warn:2.3,duration:4.8});
+   note(138,'dawn','真正的最后一秒','这一次，所有脚步都远去了。',()=>audio.steps());break;
+ }
  return events.sort((a,b)=>a.at-b.at);
 }
-function startGame(){
- if(game.state==='playing'||game.state==='dying')return;
- releaseInputs();game=newNight();game.events=createEvents();modalOrigin=null;
- $('ending').classList.add('hidden');$('panel').classList.add('hidden');$('landing').classList.add('leaving');$('landing').inert=true;$('hud').inert=false;$('hud').classList.remove('hidden');document.body.classList.add('in-game');
- requestAnimationFrame(()=>$('hud').classList.add('visible'));
- $('alertCue').classList.remove('on');$('subtitle').classList.remove('on');$('doorHint').classList.remove('on');
- audio.reset();audio.init().then(ok=>{if(!ok)toast('声音未能启用；游戏可以继续，危险会有文字提示。');});
+function hideTransient(){for(const id of ['alertCue','subtitle','doorHint','holdVignette'])$(id).classList.remove('on');$('cinematicText').classList.remove('shown');}
+function setInert(except){for(const id of ['landing','hud','briefing','ending'])$(id).inert=id!==except;}
+function startGame(level=campaign.checkpoint){
+ if(!validIndex(level)||level>campaign.unlocked)return;
+ releaseInputs();audio.reset();audio.pause();game=newNight(level);DURATION=chapter().duration;game.events=createEvents();modalOrigin=null;archiveOrigin=null;
+ for(const id of ['ending','panel','archive'])$(id).classList.add('hidden');
+ $('landing').classList.add('leaving');$('hud').classList.remove('hidden');$('hud').classList.add('visible');document.body.classList.add('in-game');hideTransient();setInert('briefing');
+ $('briefTime').textContent=chapterRange(level)+' / NIGHT 0407';$('briefNumber').textContent=String(level+1).padStart(2,'0');$('briefTitle').textContent=chapter().title;$('briefStory').textContent=chapter().story;$('briefRule').textContent=chapter().rule;
+ $('briefClue').textContent=campaign.fragments.includes(level)?'本章碎片已记录：「'+chapter().fragment+'」。可在时间线中重新查看。':'纸条出现时，打开挡片并短看猫眼，即可记录一个碎片。尽快松开 E；六片全部收集后可触发另一种最终结局。';
+ $('ignoreClues').checked=false;$('briefEndingOption').classList.toggle('hidden',!(level===5&&campaign.fragments.length===6));
+ $('briefCheckpoint').textContent='CHECKPOINT '+String(level+1).padStart(2,'0')+' / 06　·　本章约 '+durationText(DURATION)+'　·　'+(persistentStorage?'失败只重试本章':'本地存储不可用，关闭页面不保留进度');
+ campaign.checkpoint=level;persistCampaign();$('briefing').classList.remove('hidden');$('briefing').firstElementChild.scrollTop=0;buildRail();updateUI();$('enterChapter').focus({preventScroll:true});
+}
+function enterChapter(){
+ if(game.state!=='briefing')return;
+ game.ignoreClues=$('ignoreClues').checked;
+ $('briefing').classList.add('hidden');setInert('hud');game.state='playing';game.graceUntil=game.time+.6;
+ audio.reset();audio.init().then(ok=>{if(!ok)toast('声音未能启用；危险均有文字提示，可继续游玩。');if(!['playing','dying'].includes(game.state))audio.pause();});
  $('lampBtn').focus({preventScroll:true});updateUI();
 }
 function toHome(){
- releaseInputs();audio.reset();audio.pause();game={state:'landing',time:0,breath:100,danger:0,lightOn:true,holding:false,peeking:false,peekTime:0,attack:null,scare:null,slamUntil:0,shadowUntil:0,quietUntil:0,eyeAwake:false,doorHover:false};
- $('ending').classList.add('hidden');$('panel').classList.add('hidden');$('hud').classList.remove('visible');$('hud').classList.add('hidden');$('hud').inert=true;$('landing').classList.remove('leaving');$('landing').inert=false;$('holdVignette').classList.remove('on');document.body.classList.remove('in-game');canvas.style.cursor='default';modalOrigin=null;showRecord();$('startBtn').focus({preventScroll:true});
+ releaseInputs();audio.reset();audio.pause();game={state:'landing',level:0,time:0,breath:100,stamina:100,danger:0,lightOn:true,coverClosed:false,holding:false,bracing:false,peeking:false,peekTime:0,attack:null,scare:null,slamUntil:0,shadowUntil:0,handUntil:0,quietUntil:0,eyeAwake:false,doorHover:false};
+ for(const id of ['ending','panel','briefing','archive'])$(id).classList.add('hidden');$('hud').classList.remove('visible');$('hud').classList.add('hidden');$('landing').classList.remove('leaving');setInert('landing');hideTransient();document.body.classList.remove('in-game');canvas.style.cursor='default';modalOrigin=null;archiveOrigin=null;showRecord();$('startBtn').focus({preventScroll:true});
 }
 function die(){
- if(game.state!=='playing')return;
- game.deathCause=game.peeking?'你把眼睛，贴得太近了。':game.lightOn?'灯光，从门缝漏了出去。':'你在它离开前，漏出了一口呼吸。';game.state='dying';game.scare={kind:'death',age:0};releaseInputs();audio.reset();audio.startle('death');$('subtitle').classList.remove('on');$('alertCue').classList.remove('on');$('holdVignette').classList.remove('on');updateUI();
+ if(!isPlaying())return;
+ const a=game.attack;
+ game.deathCause=game.peeking?'你把眼睛，贴得太近了。':a&&(a.type==='eye'||a.cover||a.type==='final')&&!game.coverClosed?'猫眼没有遮住。它看清了你的眼睛。':game.lightOn?'灯光，从门缝漏了出去。':a&&(a.type==='chain'||a.type==='final')&&!game.bracing?'你的手松了。门链，也松了。':'你在它离开前，漏出了一口呼吸。';
+ recordEvent('first-failure','本章首次失守',game.deathCause,'threat');campaign.deaths++;persistCampaign();
+ game.state='dying';game.scare={kind:'death',age:0};releaseInputs();audio.reset();audio.startle('death');hideTransient();updateUI();
 }
 function finish(won){
  if(game.state==='ending')return;
- game.state='ending';game.won=won;game.scare=null;game.attack=null;releaseInputs();audio.reset();
- if(won){game.time=DURATION;game.lightOn=true;audio.tone(196,196,1.5,.035);audio.tone(293.66,293.66,1.6,.018,.3);}
- record.best=Math.max(record.best,Math.floor(game.time));if(won)record.wins++;save('dna.record.v1',record);
- $('alertCue').classList.remove('on');$('subtitle').classList.remove('on');$('holdVignette').classList.remove('on');$('hud').inert=true;
- $('endOverline').textContent=won?'05:00 / 天亮了':clockText(game.time)+' / 门没有守住';
- $('endTitle').textContent=won?'五点整。\n你没有应门。':'它知道你在。';
- $('endText').textContent=won?'第一缕晨光，挤进了门缝。\n脚步声终于远去。\n门下却多了一张纸：\n「明晚，记得开门。」':game.deathCause+'\n门外的东西，只需要这一个信号。';
- $('endStats').textContent=`坚持 ${durationText(game.time)}　/　守住 ${game.dodged} 次试探　/　查看猫眼 ${game.peeks} 次`;
- $('endNote').textContent=won?'你可以关掉页面了。这一次，它确实离开了。':'下次：门把手一动，关灯并屏息，直到提示脚步远去。';
- $('ending').classList.remove('hidden');$('retryBtn').focus({preventScroll:true});updateUI();
+ game.won=won;game.final=won&&game.level===5;game.state='ending';game.scare=null;game.attack=null;releaseInputs();audio.reset();hideTransient();setInert('ending');
+ if(won){
+  game.time=DURATION;recordEvent('complete','这一段时间，被守住了。','你没有打开这扇门。时间线推进到了 '+clockText()+'。','complete');
+  if(!campaign.completed.includes(game.level))campaign.completed.push(game.level);
+  campaign.completed.sort((a,b)=>a-b);campaign.unlocked=Math.max(campaign.unlocked,Math.min(5,game.level+1));campaign.checkpoint=Math.min(5,game.level+1);
+  game.lightOn=true;audio.tone(146.8,146.8,1.5,.026);audio.tone(220,220,1.6,.015,.25);
+ }
+ const truth=campaign.fragments.length===6&&!game.ignoreClues;
+ if(game.final){
+  const ending=truth?'truth':'normal';if(!campaign.endings.includes(ending))campaign.endings.push(ending);
+  recordEvent('ending-'+ending,truth?'隐藏结局：门内的你':'结局：门外仍有人',truth?'六个碎片连在一起：不要回应五点的你自己。':'你活到了五点，但还不知道门外的声音属于谁。','complete');
+ }
+ persistCampaign();
+ $('endOverline').textContent=clockText()+' / '+(won?(game.final?'记录结束':'章节 '+String(game.level+1).padStart(2,'0')+' 已守住'):'门没有守住');
+ $('endTitle').textContent=!won?'它知道你在。':!game.final?'别松懈。\n它还没有走。':truth?'门外的声音，\n原来是你。':'五点整。\n你没有应门。';
+ $('endText').textContent=!won?game.deathCause+'\n'+chapter().rule:!game.final?chapter().outro:truth?'你把六张纸，按时间排好。\n「不要回应五点的你自己。」\n门外传来你刚才屏住的那口呼吸。\n你没有回答。门牌上的 0407，终于熄灭。':'这一次，秒针真正走过了五点。\n门下多了一张纸：\n「你少看了几段记录。」\n走廊尽头，响起了你的声音。';
+ $('endStats').textContent=`本章坚持 ${durationText(game.time)}　/　守住 ${game.dodged} 次试探\n章节 ${campaign.completed.length}/6　·　碎片 ${campaign.fragments.length}/6　·　最终结局 ${campaign.endings.length}/2`;
+ $('endNote').textContent=!won?'已保留前面章节与档案。重试从本章开头开始。':!game.final?'下一章已解锁，并保存章节起点。点击后先查看规则，不会立即遇袭。':truth?'隐藏结局「门内的你」已写入时间线。今夜，记录完整。':'结局「门外仍有人」。可通过时间线重玩章节补齐碎片，再完成第六章。';
+ $('retryBtn').firstElementChild.textContent=!won?'重试本章':game.final?'从头守夜':'进入第 '+String(game.level+2).padStart(2,'0')+' 章';
+ $('ending').classList.remove('hidden');$('ending').scrollTop=0;$('retryBtn').focus({preventScroll:true});buildRail();updateUI();
 }
 function openPanel(kind='pause'){
- if(game.state==='dying'){finish(false);return;}
- if(game.state==='ending')return;
- if(!$('panel').classList.contains('hidden'))return;
- lastFocus=document.activeElement;modalOrigin=game.state;
- if(game.state==='playing')game.state='paused';releaseInputs();audio.pause();
- const paused=modalOrigin==='playing';$('panelEyebrow').textContent=kind==='guide'?'A NOTE UNDER THE DOOR':kind==='settings'?'MAKE YOURSELF COMFORTABLE':'TAKE A BREATH';
+ if(!$('panel').classList.contains('hidden')||!$('archive').classList.contains('hidden')||['briefing','ending'].includes(game.state))return;
+ lastFocus=document.activeElement;modalOrigin=game.state;if(['playing','dying'].includes(game.state))game.state='paused';releaseInputs();audio.pause();
+ const paused=modalOrigin==='playing'||modalOrigin==='dying';
+ $('panelEyebrow').textContent=kind==='guide'?'A NOTE UNDER THE DOOR':kind==='settings'?'MAKE YOURSELF COMFORTABLE':'TAKE A BREATH';
  $('panelTitle').textContent=kind==='guide'?'生存须知。':kind==='settings'?'调低一点。':'先喘口气。';
- $('panelIntro').textContent=paused?'时间已暂停。门外的东西，也在等。':'门外的访客，不需要你的回应。';
+ $('panelIntro').textContent=paused?'所有倒计时已暂停。声音也暂停了。':'门外说的话，不是生存指令。';
  $('guideContent').classList.toggle('hidden',kind==='settings');$('settingsContent').classList.toggle('hidden',kind==='guide');$('quitBtn').classList.toggle('hidden',!paused);$('closePanel').firstElementChild.textContent=paused?'继续守夜':'回到门口';
- $('landing').inert=true;$('hud').inert=true;$('panel').classList.remove('hidden');syncSettings();$('panelTitle').tabIndex=-1;$('panelTitle').focus({preventScroll:true});$('panel').firstElementChild.scrollTop=0;updateUI();
+ setInert(null);$('panel').classList.remove('hidden');syncSettings();$('panelTitle').tabIndex=-1;$('panelTitle').focus({preventScroll:true});$('panel').firstElementChild.scrollTop=0;updateUI();
 }
 function closePanel(){
  if($('panel').classList.contains('hidden'))return;
- $('panel').classList.add('hidden');
- if(modalOrigin==='playing'){game.state='playing';$('hud').inert=false;audio.resume();}else $('landing').inert=false;
- const focus=lastFocus;modalOrigin=null;if(focus?.isConnected&&!focus.closest('[inert]'))focus.focus({preventScroll:true});
+ $('panel').classList.add('hidden');game.state=modalOrigin||'landing';setInert(game.state==='landing'?'landing':'hud');
+ if(['playing','dying'].includes(game.state)){game.graceUntil=game.time+.75;audio.resume();}
+ const focus=lastFocus;modalOrigin=null;if(focus?.isConnected&&!focus.closest('[inert]'))focus.focus({preventScroll:true});updateUI();
+}
+function buildRail(){
+ const root=$('chapterRail');root.replaceChildren();
+ CHAPTERS.forEach((ch,i)=>{const b=document.createElement('button');b.className='rail-node'+(i===game.level?' current':'')+(campaign.completed.includes(i)?' done':'')+(i>campaign.unlocked?' locked':'');b.setAttribute('aria-label','第 '+(i+1)+' 章 '+ch.title+'，查看时间线');b.title=chapterRange(i)+' / '+ch.title;const dot=document.createElement('i');dot.setAttribute('aria-hidden','true');b.append(dot,document.createTextNode(String(i+1).padStart(2,'0')));b.addEventListener('click',()=>openArchive(i));root.append(b);});
+}
+function node(tag,className,text){const e=document.createElement(tag);if(className)e.className=className;if(text!==undefined)e.textContent=text;return e;}
+function renderArchive(){
+ const nav=$('archiveChapters');nav.replaceChildren();
+ CHAPTERS.forEach((ch,i)=>{
+  const b=node('button','archive-chapter'+(i===archiveSelected?' selected':'')+(i>campaign.unlocked?' locked':''));
+  b.append(node('small','',chapterRange(i)),node('strong','',String(i+1).padStart(2,'0')+' '+ch.title),node('em','',i>campaign.unlocked?'尚未解锁':campaign.completed.includes(i)?'已守住'+(campaign.fragments.includes(i)?' · 碎片已记录':' · 碎片未记录'):campaign.logs.some(x=>x.level===i)?'记录进行中'+(campaign.fragments.includes(i)?' · 碎片已记录':''):'已解锁 · 等待记录'));
+  b.setAttribute('aria-pressed',String(i===archiveSelected));b.addEventListener('click',()=>{archiveSelected=i;renderArchive();[...nav.children][i]?.focus({preventScroll:true});});nav.append(b);
+ });
+ const i=archiveSelected,ch=CHAPTERS[i],unlocked=i<=campaign.unlocked,root=$('archiveDetail');root.replaceChildren();root.scrollTop=0;
+ const head=node('div','archive-detail-heading'),words=node('div'),kicker=node('div','archive-kicker','CHAPTER '+String(i+1).padStart(2,'0')+' / '+chapterRange(i));
+ words.append(kicker,node('h3','',ch.title),node('p','',unlocked?ch.objective:'这一段时间，尚未被你经历。前一章完成后解锁。'));head.append(words);
+ if(unlocked){const b=node('button','secondary',game.level===i&&['playing','paused','briefing'].includes(archiveOrigin)?'返回本章':campaign.completed.includes(i)?'重玩本章':'进入本章');b.addEventListener('click',()=>{if(game.level===i&&['playing','paused','briefing'].includes(archiveOrigin))closeArchive();else startGame(i);});head.append(b);}root.append(head);
+ if(campaign.fragments.includes(i)){const card=node('div','fragment-card');card.append(node('div','fragment-word',ch.fragment),node('p','','碎片 '+String(i+1).padStart(2,'0')+' / 06\n六段记录拼合后，会指向另一种结局。'));root.append(card);}
+ const logs=campaign.logs.filter(x=>x.level===i).sort((a,b)=>a.second-b.second);
+ if(!logs.length)root.append(node('p','empty-log',unlocked?'还没有记录。\n只有亲历的事件会写入这里；未来的危险不会提前显示。':'这一页是空白。\n门外的人，还没有走到这里。'));
+ else{const list=node('ol','log-list');for(const log of logs){const e=node('li','log-entry '+(log.kind==='threat'?'threat':''));const time=node('time','',stamp(log.second));time.dateTime=stamp(log.second);e.append(time,node('h4','',log.title),node('p','',log.body));list.append(e);}root.append(list);}
+ const paused=['playing','dying','paused'].includes(archiveOrigin);
+ $('archiveIntro').textContent=paused?'游戏与声音已暂停。真实剧情时间 '+clockText()+' · 关闭后继续。':'04:42 — 05:00。跨重试保留已亲历的事件，不提前显示未来内容。';
+ $('archiveStats').textContent=`章节 ${campaign.completed.length}/6　·　碎片 ${campaign.fragments.length}/6　·　结局 ${campaign.endings.length}/2　·　记录 ${campaign.logs.length} 条`;
+ $('archiveResume').textContent=paused?'关闭并继续守夜':'返回';
+}
+function openArchive(selected){
+ if(!$('panel').classList.contains('hidden')||!$('archive').classList.contains('hidden')||game.state==='dying')return;
+ archiveOrigin=game.state;archiveFocus=document.activeElement;archiveSelected=validIndex(selected)?selected:game.state==='landing'?campaign.checkpoint:game.level;
+ if(game.state==='playing')game.state='paused';releaseInputs();audio.pause();setInert(null);renderArchive();$('archive').classList.remove('hidden');$('archiveChapters').children[archiveSelected]?.scrollIntoView({block:'nearest',inline:'nearest'});$('archiveClose').focus({preventScroll:true});updateUI();
+}
+function closeArchive(){
+ if($('archive').classList.contains('hidden'))return;
+ $('archive').classList.add('hidden');game.state=archiveOrigin||'landing';setInert(game.state==='landing'?'landing':game.state==='briefing'?'briefing':game.state==='ending'?'ending':'hud');
+ if(game.state==='playing'){game.graceUntil=game.time+.75;audio.resume();}
+ const focus=archiveFocus;archiveOrigin=null;if(focus?.isConnected&&!focus.closest('[inert]'))focus.focus({preventScroll:true});updateUI();
 }
 function update(dt){
- if(game.state==='dying'){game.scare.age+=dt;if(game.scare.age>=1.2)finish(false);return;}
- if(game.state!=='playing')return;
+ if(game.state==='dying'){game.scare.age+=dt;if(game.scare.age>=1.4)finish(false);return;}
+ if(!isPlaying())return;
  game.time=Math.min(DURATION,game.time+dt);
- while(game.eventIndex<game.events.length&&game.events[game.eventIndex].at<=game.time){game.events[game.eventIndex++].run();}
+ while(game.eventIndex<game.events.length&&game.events[game.eventIndex].at<=game.time){const e=game.events[game.eventIndex++];recordEvent(e.key,e.title,e.body,e.kind);e.run();}
  syncInputs();
- if(game.holding){
-  game.breath=Math.max(0,game.breath-10.8*dt);
-  if(game.breath<=.08){game.holding=false;inputs.breathKey=false;inputs.breathPointers.clear();game.exhaustedUntil=game.time+1.8;audio.hiss(.65,.064,1140,0,-.15,null,.06);say('你必须换气。松开，等呼吸恢复。',2.8,true,true);}
- }else game.breath=Math.min(100,game.breath+17.4*dt);
- if(game.peeking){game.peekTime+=dt;if(game.time>20&&game.peekTime>2.35&&(game.peepScares===0||game.peepScares===1&&game.time>80))scareFromPeephole();}
+ if(game.holding){game.breath=Math.max(0,game.breath-9.7*dt);if(game.breath<=.08){game.holding=false;inputs.breathKey=false;inputs.breathPointers.clear();game.exhaustedUntil=game.time+1.6;audio.hiss(.65,.063,1140,0,-.15,null,.06);say('必须换气。松开屏息，等待呼吸恢复。',2.6,true,true);}}
+ else game.breath=Math.min(100,game.breath+18.5*dt);
+ if(game.bracing){game.stamina=Math.max(0,game.stamina-7.8*dt);if(game.stamina<=.08){game.bracing=false;inputs.braceKey=false;inputs.bracePointers.clear();game.armExhaustedUntil=game.time+1.6;say('手臂脱力。松开顶门，让腕力恢复。',2.6,true,true);}}
+ else game.stamina=Math.min(100,game.stamina+21*dt);
+ if(game.peeking){game.peekTime+=dt;if(game.paperUntil>game.time&&game.peekTime>=.7)collectFragment();const limit=[2.2,1.9,1.8,1.7,1.6,1.5][game.level];if(game.time>8&&game.peekTime>limit&&game.time-game.lastScareAt>7)scareFromPeephole();}
+ if(game.pendingScareAt&&game.time>=game.pendingScareAt){game.pendingScareAt=0;triggerScare('echo','灯亮的那一刻，有张脸贴着门。');}
  if(game.attack){
-  const a=game.attack;a.age=game.time-a.start;
-  if(a.age>=a.warn){
-   if(!a.entered){a.entered=true;audio.latch(.48);$('alertCue').textContent='它在门外 · 保持熄灯、屏息';}
-   const risk=(game.lightOn?1:0)+(!game.holding?1.12:0)+(game.peeking?1.8:0);
-   if(risk===0){a.protected+=dt;game.danger=Math.max(0,game.danger-25*dt);}else{game.danger=Math.min(100,game.danger+risk*22.4*dt);game.exposures+=dt;}
+  const a=game.attack;a.age=game.time-a.start;const elapsed=a.age-a.warn;
+  let phase=elapsed<0?'warning':a.type==='echo'&&elapsed>=3.5&&elapsed<6.3?'rest':a.type==='echo'&&elapsed>=6.3?'second':'active';
+  if(phase!==a.phase){a.phase=phase;refreshThreatCue();
+   if(phase==='rest'){audio.whisper(-.8);say('门外：“我走了。”\n换气窗口：现在松开屏息，别开灯。',2.7,true,true);}
+   else if(phase==='second'){audio.latch();say('它又靠过来了。重新屏息！',4.4,true,true);}
+  }
+  if(elapsed>=0&&!a.entered){a.entered=true;if(a.type==='chain'||a.type==='final')audio.chain();else audio.latch(.4);}
+  if(elapsed>=0){
+   let risk=threatNeeds(a).filter(n=>!n.met).length+(game.peeking?1.3:0);
+   // Pause/restore grace is short, explicit, and does not alter story time.
+   if(game.time<game.graceUntil)risk=0;
+   if(risk===0){a.protected+=dt;game.danger=Math.max(0,game.danger-26*dt);}else{game.danger=Math.min(100,game.danger+risk*(24+game.level*1.2)*dt);game.exposures+=dt;}
    if(game.danger>=100){die();return;}
-  }else game.danger=Math.max(0,game.danger-4*dt);
-  if(a.age>=a.warn+a.duration){game.dodged++;game.attack=null;game.danger=Math.max(0,game.danger-35);audio.steps();$('alertCue').classList.remove('on');say(a.number===4?'脚步远了。再等到五点。':'脚步声，远了。可以呼吸了。',4.5,false,true);}
- }else game.danger=Math.max(0,game.danger-6*dt);
- if(game.scare){game.scare.age+=dt;if(game.scare.age>=.82)game.scare=null;}
+  }else game.danger=Math.max(0,game.danger-5*dt);
+  if(a.age>=a.warn+a.duration){game.dodged++;game.attack=null;game.danger=Math.max(0,game.danger-36);audio.steps();refreshThreatCue();say('脚步远去。现在可以松手、呼吸。',4.5,false,true);}
+ }else game.danger=Math.max(0,game.danger-7.5*dt);
+ if(game.scare){game.scare.age+=dt;if(game.scare.age>=1.08)game.scare=null;}
  if(game.time>=game.subtitleUntil)$('subtitle').classList.remove('on');
+ if(game.cinematicUntil&&game.time>=game.cinematicUntil){$('cinematicText').classList.remove('shown');game.cinematicUntil=0;}
  if(game.time>=DURATION)finish(true);
 }
 function updateUI(){
  if(game.state==='landing')return;
- const clock=clockText(game.time);if(clock!==game.clockCache){$('clock').innerHTML=clock.split(':').join('<span class="clock-colon">:</span>');$('clock').setAttribute('aria-label','当前时间 '+clock);$('remaining').textContent='距离天亮 '+durationText(Math.ceil(DURATION-game.time));game.clockCache=clock;}
+ const anomaly=game.falseDawnUntil>game.time,clock=anomaly?'05:00:00':clockText();
+ const clockKey=clock+Math.ceil(DURATION-game.time)+anomaly;
+ if(clockKey!==game.clockCache){$('clock').innerHTML=clock.split(':').join('<span class="clock-colon">:</span>');$('clock').setAttribute('aria-label',anomaly?'时钟异常，真实剧情时间 '+clockText():'剧情时间 '+clock);$('remaining').textContent=anomaly?'时钟异常 · 本章尚未结束':'本章剩余 '+durationText(Math.ceil(DURATION-game.time));$('clock').classList.toggle('anomaly',anomaly);game.clockCache=clockKey;}
  const breath=Math.ceil(game.breath);$('breathValue').textContent=breath;$('breathFill').style.transform=`scaleX(${game.breath/100})`;$('breathMeter').setAttribute('aria-valuenow',breath);$('breathing').classList.toggle('low',breath<28);
+ $('staminaValue').textContent=Math.ceil(game.stamina);$('staminaFill').style.transform=`scaleX(${game.stamina/100})`;$('dangerFill').style.transform=`scaleX(${game.danger/100})`;
  $('statusLine').textContent=game.holding?'不要出声':game.time<game.exhaustedUntil?'正在换气':breath<65?'呼吸恢复中':'呼吸平稳';
- $('lampBtn').classList.toggle('is-active',!game.lightOn);$('lampBtn').classList.toggle('is-required',!!game.attack&&game.lightOn);$('lampBtn').setAttribute('aria-pressed',String(!game.lightOn));$('lampBtn').setAttribute('aria-label',game.lightOn?'关闭灯光（L）':'打开灯光（L）');$('lampLabel').textContent=game.lightOn?'关灯':'开灯';$('lampSmall').textContent=game.lightOn?'灯光亮着':'灯已熄灭';
- $('breathBtn').classList.toggle('is-active',game.holding);$('breathBtn').classList.toggle('is-required',!!game.attack&&!game.holding);$('breathBtn').setAttribute('aria-pressed',String(game.holding));$('breathLabel').textContent=game.holding?'正在屏息':'屏住呼吸';$('breathSmall').textContent=game.holding?'等脚步离开':game.time<game.exhaustedUntil?'先松开 · 等待恢复':'按住 · 别松开';
- $('peepBtn').classList.toggle('is-active',game.peeking);$('peepBtn').setAttribute('aria-pressed',String(game.peeking));$('peepLabel').classList.toggle('hidden',!game.peeking);$('holdVignette').classList.toggle('on',game.holding);
- $('progress').style.transform=`scaleX(${game.time/DURATION})`;$('doorStatus').textContent=game.attack?'门把手正在转动':game.peeking?'不要让它看清你':'门已反锁 / 请勿回应';
- const chapter=game.time<44?0:game.time<99?1:game.time<151?2:3;
- if(game.chapterCache!==chapter){game.chapterCache=chapter;$('chapterNo').textContent='第一夜 / 0'+(chapter+1);$('chapterTitle').textContent=['不要回应','有人停在门外','它知道你醒着','别相信寂静'][chapter];}
- const hint=game.doorHover&&!coarsePointer.matches&&!game.peeking&&!game.attack&&game.state==='playing';$('doorHint').classList.toggle('on',hint);if(hint){const {s,ox,oy}=sceneTransform();$('doorHint').style.left=(ox+1000*s)+'px';$('doorHint').style.top=(oy+388*s)+'px';}
+ const needs=threatNeeds(),needsKey=needs.map(x=>x.key+x.met).join(',')+(game.attack?.phase||'');
+ if(needsKey!==game.requirementCache){game.requirementCache=needsKey;const r=$('requirements');r.replaceChildren();if(needs.length){for(const need of needs)r.append(node('span','requirement'+(need.met?' met':''),need.label));}else r.textContent='等待下一次动静 · 普通敲门无需回应';}
+ const unmet=key=>needs.some(n=>n.key===key&&!n.met),playing=isPlaying();
+ for(const id of ['lampBtn','peepBtn','breathBtn','coverBtn','braceBtn'])$(id).disabled=!playing||(id==='braceBtn'&&game.level<2);
+ $('lampBtn').classList.toggle('is-active',!game.lightOn);$('lampBtn').classList.toggle('is-required',unmet('dark'));$('lampBtn').setAttribute('aria-pressed',String(!game.lightOn));$('lampBtn').setAttribute('aria-label',game.lightOn?'关闭灯光（L）':'打开灯光（L）');$('lampLabel').textContent=game.powerUntil>game.time?'已断电':game.lightOn?'关灯':'开灯';$('lampSmall').textContent=game.powerUntil>game.time?'供电中断':game.lightOn?'灯光亮着':'灯已熄灭';
+ $('breathBtn').classList.toggle('is-active',game.holding);$('breathBtn').classList.toggle('is-required',unmet('breath'));$('breathBtn').setAttribute('aria-pressed',String(game.holding));$('breathLabel').textContent=game.holding?'正在屏息':'屏住呼吸';$('breathSmall').textContent=game.holding?'不要出声':game.attack?.phase==='rest'?'现在可以换气':'按住 · 别松开';
+ $('peepBtn').classList.toggle('is-active',game.peeking);$('peepBtn').classList.toggle('is-locked',game.coverClosed);$('peepBtn').setAttribute('aria-pressed',String(game.peeking));$('peepLabel').classList.toggle('hidden',!game.peeking);$('holdVignette').classList.toggle('on',game.holding);
+ $('coverBtn').classList.toggle('is-active',game.coverClosed);$('coverBtn').classList.toggle('is-required',unmet('cover'));$('coverBtn').setAttribute('aria-pressed',String(game.coverClosed));$('coverBtn').setAttribute('aria-label',game.coverClosed?'打开猫眼挡片（C）':'关闭猫眼挡片（C）');$('coverLabel').textContent=game.coverClosed?'打开挡片':'遮住猫眼';$('coverSmall').textContent=game.coverClosed?'猫眼已遮住':'挡片已打开';
+ $('braceBtn').classList.toggle('is-active',game.bracing);$('braceBtn').classList.toggle('is-required',unmet('brace'));$('braceBtn').setAttribute('aria-pressed',String(game.bracing));$('braceLabel').textContent=game.bracing?'正在顶门':'顶住门链';$('braceSmall').textContent=game.level<2?'第三章启用':game.bracing?'不要松手':'按住 · 稳住门';
+ $('progress').style.transform=`scaleX(${(game.level+game.time/DURATION)/6})`;$('doorStatus').textContent=game.attack?'只相信危险提示，不要回应门外':game.peeking?'不要让它看清你':game.paperUntil>game.time?'猫眼外有纸条 · 短看即可记录':'门已反锁 / 请勿回应';
+ $('chapterNo').textContent='失序之夜 / '+String(game.level+1).padStart(2,'0')+' OF 06';$('chapterTitle').textContent=chapter().title;$('objective').textContent=chapter().objective;
+ const hint=game.doorHover&&!coarsePointer.matches&&!game.peeking&&!game.attack&&playing&&!game.coverClosed;$('doorHint').classList.toggle('on',hint);if(hint){const {s,ox,oy}=sceneTransform();$('doorHint').style.left=(ox+1000*s)+'px';$('doorHint').style.top=(oy+388*s)+'px';}
 }
-// Pointer capture preserves a hold even if a thumb slides off the button.
+// Pointer capture permits two thumbs to hold breath and brace independently.
 function bindHold(el,kind){
- const pointerSet=inputs[kind+'Pointers'];
- el.addEventListener('pointerdown',event=>{if(event.button!==0||!isPlaying())return;event.preventDefault();try{el.setPointerCapture(event.pointerId);}catch{}pointerSet.add(event.pointerId);el.focus?.({preventScroll:true});syncInputs();updateUI();});
- const end=event=>{pointerSet.delete(event.pointerId);if(isPlaying()){syncInputs();updateUI();}};
- el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);el.addEventListener('lostpointercapture',end);el.addEventListener('contextmenu',e=>e.preventDefault());
+ const set=inputs[kind+'Pointers'];
+ el.addEventListener('pointerdown',event=>{if(event.button!==0||!isPlaying()||el.disabled)return;event.preventDefault();if(kind==='peep'&&game.coverClosed){toast('猫眼挡片已关闭。先按 C 或“打开挡片”。');return;}try{el.setPointerCapture(event.pointerId);}catch{}set.add(event.pointerId);el.focus({preventScroll:true});syncInputs();updateUI();});
+ const end=event=>{set.delete(event.pointerId);if(isPlaying()){syncInputs();updateUI();}};
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])el.addEventListener(type,end);el.addEventListener('contextmenu',e=>e.preventDefault());
 }
-bindHold($('breathBtn'),'breath');bindHold($('peepBtn'),'peep');
+bindHold($('breathBtn'),'breath');bindHold($('peepBtn'),'peep');bindHold($('braceBtn'),'brace');
 canvas.style.touchAction='none';
 function doorContains(x,y){const {s,ox,oy}=sceneTransform();const wx=(x-ox)/s,wy=(y-oy)/s;return wx>822&&wx<1180&&wy>172&&wy<830;}
-canvas.addEventListener('pointerdown',e=>{if(e.button!==0||!isPlaying()||!doorContains(e.clientX,e.clientY))return;e.preventDefault();try{canvas.setPointerCapture(e.pointerId);}catch{}inputs.peepPointers.add(e.pointerId);syncInputs();updateUI();});
-for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>{inputs.peepPointers.delete(e.pointerId);if(isPlaying()){syncInputs();updateUI();}});
+canvas.addEventListener('pointerdown',e=>{if(e.button!==0||!isPlaying()||!doorContains(e.clientX,e.clientY))return;e.preventDefault();if(game.coverClosed){toast('先打开猫眼挡片，再观察。');return;}try{canvas.setPointerCapture(e.pointerId);}catch{}inputs.peepPointers.add(e.pointerId);syncInputs();updateUI();});
+for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,e=>{inputs.peepPointers.delete(e.pointerId);if(isPlaying()){syncInputs();updateUI();}});
 canvas.addEventListener('contextmenu',e=>e.preventDefault());
 addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){mouse.x=(e.clientX/viewport.w-.5)*2;mouse.y=(e.clientY/viewport.h-.5)*2;}if(isPlaying()){game.doorHover=doorContains(e.clientX,e.clientY);canvas.style.cursor=game.doorHover?'crosshair':'default';}},{passive:true});
-$('startBtn').addEventListener('click',startGame);$('retryBtn').addEventListener('click',startGame);$('homeBtn').addEventListener('click',toHome);$('quitBtn').addEventListener('click',toHome);$('lampBtn').addEventListener('click',toggleLamp);$('muteBtn').addEventListener('click',toggleMute);$('landingSound').addEventListener('click',toggleMute);$('pauseBtn').addEventListener('click',()=>openPanel());$('guideBtn').addEventListener('click',()=>openPanel('guide'));$('settingsBtn').addEventListener('click',()=>openPanel('settings'));$('closePanel').addEventListener('click',closePanel);
+$('startBtn').addEventListener('click',()=>startGame(campaign.checkpoint));$('newBtn').addEventListener('click',()=>startGame(0));$('enterChapter').addEventListener('click',enterChapter);
+$('retryBtn').addEventListener('click',()=>startGame(game.won?(game.final?0:game.level+1):game.level));
+for(const id of ['homeBtn','quitBtn','briefHome'])$(id).addEventListener('click',toHome);
+$('lampBtn').addEventListener('click',toggleLamp);$('coverBtn').addEventListener('click',toggleCover);$('muteBtn').addEventListener('click',toggleMute);$('landingSound').addEventListener('click',toggleMute);
+$('pauseBtn').addEventListener('click',()=>openPanel());$('guideBtn').addEventListener('click',()=>openPanel('guide'));$('settingsBtn').addEventListener('click',()=>openPanel('settings'));$('closePanel').addEventListener('click',closePanel);
+for(const id of ['archiveLanding','archiveBtn','archiveEnding','archiveBriefing'])$(id).addEventListener('click',()=>openArchive());
+$('archiveClose').addEventListener('click',closeArchive);$('archiveResume').addEventListener('click',closeArchive);
 $('gentleLanding').addEventListener('change',e=>setGentle(e.target.checked));$('gentlePanel').addEventListener('change',e=>setGentle(e.target.checked));$('volumeRange').addEventListener('input',e=>{settings.volume=clamp(Number(e.target.value),0,100);settings.muted=settings.volume===0;audio.setVolume();persistSettings();syncSettings();});
 function trapFocus(e,root){if(e.key!=='Tab')return;const list=[...root.querySelectorAll('button,input,[tabindex="0"]')].filter(el=>!el.disabled&&el.getClientRects().length);if(!list.length)return;const first=list[0],last=list[list.length-1],current=document.activeElement;if(e.shiftKey&&(current===first||!list.includes(current))){e.preventDefault();last.focus();}else if(!e.shiftKey&&(current===last||!list.includes(current))){e.preventDefault();first.focus();}}
 addEventListener('keydown',e=>{
- if(!$('panel').classList.contains('hidden')){trapFocus(e,$('panel'));if(e.code==='Escape'){e.preventDefault();closePanel();}return;}
- if(game.state==='ending'){trapFocus(e,$('ending'));return;}
- if(e.code==='Escape'){if(game.state==='playing'||game.state==='dying'){e.preventDefault();openPanel();}return;}
+ if(!$('archive').classList.contains('hidden')){trapFocus(e,$('archive'));if((e.code==='Escape'||e.code==='KeyT')&&!e.repeat){e.preventDefault();closeArchive();}return;}
+ if(!$('panel').classList.contains('hidden')){trapFocus(e,$('panel'));if(e.code==='Escape'&&!e.repeat){e.preventDefault();closePanel();}return;}
  if(e.target instanceof HTMLInputElement||e.ctrlKey||e.metaKey||e.altKey)return;
+ if(e.code==='KeyT'&&!e.repeat){e.preventDefault();openArchive();return;}
  if(e.code==='KeyM'&&!e.repeat){toggleMute();return;}
+ if(game.state==='briefing'){trapFocus(e,$('briefing'));if(e.code==='Escape')toHome();return;}
+ if(game.state==='ending'){trapFocus(e,$('ending'));if(e.code==='Escape')toHome();return;}
+ if(e.code==='Escape'){if(['playing','dying'].includes(game.state)){e.preventDefault();openPanel();}return;}
  if(!isPlaying())return;
- if(['Space','KeyE','KeyL'].includes(e.code))e.preventDefault();
- if(e.repeat)return;
- if(e.code==='KeyL')toggleLamp();if(e.code==='Space')inputs.breathKey=true;if(e.code==='KeyE')inputs.peepKey=true;
- if(e.code==='Enter'&&e.target===$('peepBtn')){e.preventDefault();inputs.peepKey=true;}
- if(e.code==='Enter'&&e.target===$('breathBtn')){e.preventDefault();inputs.breathKey=true;}
+ if(['Space','KeyE','KeyL','KeyC','KeyR'].includes(e.code))e.preventDefault();if(e.repeat)return;
+ if(e.code==='KeyL')toggleLamp();if(e.code==='KeyC')toggleCover();if(e.code==='Space')inputs.breathKey=true;if(e.code==='KeyR')inputs.braceKey=true;
+ if(e.code==='KeyE'){if(game.coverClosed)toast('先按 C 打开挡片，再看猫眼。');inputs.peepKey=true;}
+ if(e.code==='Enter')for(const [id,kind]of [['peepBtn','peep'],['breathBtn','breath'],['braceBtn','brace']])if(e.target===$(id)){e.preventDefault();inputs[kind+'Key']=true;}
  syncInputs();updateUI();
 });
-addEventListener('keyup',e=>{if(e.code==='Space')inputs.breathKey=false;if(e.code==='KeyE')inputs.peepKey=false;if(e.code==='Enter'){inputs.peepKey=false;inputs.breathKey=false;}if(isPlaying()){syncInputs();updateUI();}});
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&game.state==='playing')openPanel();});
-addEventListener('blur',()=>{if(game.state==='playing')openPanel();else releaseInputs();});
+addEventListener('keyup',e=>{if(e.code==='Space')inputs.breathKey=false;if(e.code==='KeyE')inputs.peepKey=false;if(e.code==='KeyR')inputs.braceKey=false;if(e.code==='Enter'){inputs.peepKey=false;inputs.breathKey=false;inputs.braceKey=false;}if(isPlaying()){syncInputs();updateUI();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&['playing','dying'].includes(game.state))openPanel();});
+addEventListener('blur',()=>{if(['playing','dying'].includes(game.state))openPanel();else releaseInputs();});
 let previous=performance.now();
 function frame(now){const dt=clamp((now-previous)/1000,0,.06);previous=now;update(dt);if(game.state==='playing')audio.tick(game.time);render(dt,now/1000);uiAccumulator+=dt;if(uiAccumulator>.1){uiAccumulator=0;updateUI();}requestAnimationFrame(frame);}
-syncSettings();showRecord();$('hud').inert=true;requestAnimationFrame(frame);
+syncSettings();showRecord();buildRail();setInert('landing');requestAnimationFrame(frame);
 
 </script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
